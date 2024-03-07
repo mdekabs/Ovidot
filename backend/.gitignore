@@ -4,4 +4,4 @@ jsdoc.config.json
 .prettierignore
 .gitignore
 blacklist.json
-package-lock.json
+
