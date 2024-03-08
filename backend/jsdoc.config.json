@@ -1,6 +1,6 @@
 {
   "source": {
-    "include": ["./admin", "./routes"],
+    "include": ["./v1/admin", "./v1/routes"],
     "exclude": ["./node_modules"]
   },
   "opts": {

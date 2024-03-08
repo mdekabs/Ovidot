@@ -35,7 +35,45 @@ const APP_PATH = '/api/v1';
 
 // Swagger JSDoc configuration
 const swaggerOptions = {
- // Your Swagger configuration...
+ definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Ovidot Backend API',
+      version: '1.0.0',
+      description: 'Ovidot Backend API Documentation',
+    },
+    components: {
+      securitySchemes: {
+        adminToken: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+        userToken: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+    servers: [
+      {
+        url: `http://${HOST}:${PORT}${APP_PATH}/admin`,
+        description: 'Admin Routes Server',
+      },
+      {
+        url: `http://${HOST}:${PORT}${APP_PATH}/auth`,
+        description: 'Authenticated Routes server',
+      },
+      {
+        url: `http://${HOST}:${PORT}${APP_PATH}`,
+        description: 'General Routes server',
+      },
+    ],
+ };
+  const options = {
+    definition = swaggerDefinition,
+    apis: ['./v1/routes/*.js', "./v1/routes/auth/*.js", "./v1/admin/route/*.js"],
 };
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
@@ -56,9 +94,10 @@ db.once('open', () => {
  logger.info('MongoDB connected!');
 });
 
-// Initialize Redis client asynchronously
-async function initializeRedisClient() {
- let redisClient;
+// Connect to Redis database
+let redisClient;
+
+(async () => {
  if (ENVIR !== 'test') {
     redisClient = await createClient({
       username: `${USERNAME}`,
@@ -90,12 +129,7 @@ async function initializeRedisClient() {
       .on('error', err => logger.error('Redis Client Error', err))
       .connect();
  }
- return redisClient;
-}
-
-// Export redisClient after it's initialized
-let redisClient = initializeRedisClient();
-export { redisClient };
+})();
 
 app.use(cors());
 app.use(urlencoded({ extended: false }));
