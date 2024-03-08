@@ -104,3 +104,5 @@
 2024-03-08T00:51:11.410Z ERROR: MongoDB connection error: bad auth : authentication failed 
 2024-03-08T00:54:13.535Z INFO: Server is now running on port 5000 
 2024-03-08T00:54:15.570Z ERROR: MongoDB connection error: bad auth : authentication failed 
+2024-03-08T08:37:39.047Z INFO: Server is now running on port 5000 
+2024-03-08T08:38:09.022Z ERROR: MongoDB connection error: connect ECONNREFUSED 127.0.0.1:27017 
