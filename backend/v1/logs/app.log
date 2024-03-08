@@ -106,3 +106,31 @@
 2024-03-08T00:54:15.570Z ERROR: MongoDB connection error: bad auth : authentication failed 
 2024-03-08T08:37:39.047Z INFO: Server is now running on port 5000 
 2024-03-08T08:38:09.022Z ERROR: MongoDB connection error: connect ECONNREFUSED 127.0.0.1:27017 
+2024-03-08T11:01:34.504Z INFO: Server is now running on port 5000 
+2024-03-08T11:02:04.506Z ERROR: MongoDB connection error: connect ECONNREFUSED 127.0.0.1:27017 
+2024-03-08T11:07:29.130Z INFO: Server is now running on port 5000 
+2024-03-08T11:07:59.125Z ERROR: MongoDB connection error: connect ECONNREFUSED 127.0.0.1:27017 
+2024-03-08T11:15:29.554Z INFO: Server is now running on port 5000 
+2024-03-08T11:15:59.556Z ERROR: MongoDB connection error: connect ECONNREFUSED 127.0.0.1:27017 
+2024-03-08T11:16:47.360Z INFO: Server is now running on port 5000 
+2024-03-08T11:16:52.938Z INFO: MongoDB connected! 
+2024-03-08T11:17:58.607Z INFO: Server is now running on port 5000 
+2024-03-08T11:17:58.632Z INFO: MongoDB connected! 
+2024-03-08T11:20:16.170Z INFO: GET /api/v1/swagger/ 200 14ms 200
+2024-03-08T11:20:16.319Z INFO: GET /api/v1/swagger/swagger-ui-init.js 200 0ms 200
+2024-03-08T11:20:16.392Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 200 87ms 200
+2024-03-08T11:20:16.409Z INFO: GET /api/v1/swagger/swagger-ui.css 200 136ms 200
+2024-03-08T11:20:16.534Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 200 236ms 200
+2024-03-08T11:20:17.768Z INFO: GET /api/v1/swagger/favicon-32x32.png 200 29ms 200
+2024-03-08T11:20:32.391Z WARN: GET / 404 4ms 404
+2024-03-08T11:20:49.002Z INFO: GET /api/v1/swagger/ 304 1ms 304
+2024-03-08T11:20:49.074Z INFO: GET /api/v1/swagger/swagger-ui.css 304 3ms 304
+2024-03-08T11:20:49.085Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 3ms 304
+2024-03-08T11:20:49.100Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 1ms 304
+2024-03-08T11:20:49.112Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 1ms 304
+2024-03-08T11:20:51.319Z INFO: GET /api/v1/swagger/ 304 1ms 304
+2024-03-08T11:20:51.379Z INFO: GET /api/v1/swagger/swagger-ui.css 304 3ms 304
+2024-03-08T11:20:51.382Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 6ms 304
+2024-03-08T11:20:51.399Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 7ms 304
+2024-03-08T11:20:51.402Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 1ms 304
+2024-03-08T11:20:51.995Z INFO: GET /api/v1/swagger/favicon-32x32.png 304 1ms 304

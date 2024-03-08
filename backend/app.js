@@ -6,7 +6,7 @@ import { MongoClient } from 'mongodb';
 import bodyParser from 'body-parser';
 import verify from './v1/middleware/tokenVerification.js';
 import { logger, appLogger } from './v1/middleware/logger.js';
-import { createRedisClient } from './redisClient.js'; // Adjust the import path as necessary
+import redisManager from './v1/services/caching.js'; // Adjust the import path as necessary
 import useragent from 'express-useragent';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
@@ -24,8 +24,8 @@ const { urlencoded } = bodyParser;
 const app = express();
 
 // Get environment variables
-const { HOST, ENVIR, PORT, USERNAME, PASSWORD, REDISPORT, PRIKEY, CRT, PEMFILE, MONGODBURI } = process.env;
-const url = ENVIR !== 'test' ? MONGODBURI : process.env.TESTDB;
+const { HOST, ENVIR, PORT, USERNAME, PASSWORD, REDISPORT, PRIKEY, CRT, PEMFILE, MONGODB_URI } = process.env;
+const url = ENVIR !== 'test' ? MONGODB_URI : process.env.TESTDB;
 
 // URL path
 const APP_PATH = '/api/v1';
@@ -74,11 +74,7 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
 // Connect to MongoDB database
-const client = new MongoClient(url, {
- useNewUrlParser: true,
- useUnifiedTopology: true,
- maxPoolSize: 2,
-});
+const client = new MongoClient(url);
 
 let db;
 
@@ -95,18 +91,6 @@ client.connect()
  })
  .catch(error => {
     logger.error('MongoDB connection error:', error);
- });
-
-// Connect to Redis database
-let redisClient;
-
-createRedisClient(process.env.ENVIR)
- .then(client => {
-    redisClient = client;
-    // You can now use `redisClient` for Redis operations
- })
- .catch(error => {
-    logger.error('Redis Client Error', error);
  });
 
 // The rest of your application setup remains the same
