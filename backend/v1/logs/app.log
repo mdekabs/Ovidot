@@ -98,3 +98,9 @@
 2024-02-11T18:32:19.667Z INFO: MongoDB connected! 
 2024-03-07T12:51:50.473Z INFO: MongoDB connected! 
 2024-03-07T12:51:50.547Z INFO: Server is now running on port 5000 
+2024-03-08T00:32:37.603Z INFO: MongoDB connected! 
+2024-03-08T00:32:37.690Z INFO: Server is now running on port 5000 
+2024-03-08T00:51:08.504Z INFO: Server is now running on port 5000 
+2024-03-08T00:51:11.410Z ERROR: MongoDB connection error: bad auth : authentication failed 
+2024-03-08T00:54:13.535Z INFO: Server is now running on port 5000 
+2024-03-08T00:54:15.570Z ERROR: MongoDB connection error: bad auth : authentication failed 
