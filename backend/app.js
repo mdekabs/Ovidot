@@ -107,7 +107,7 @@ app.use(APP_PATH + '/auth', verify, authRoutes);
 app.use(APP_PATH + '/admin', adminRoutes);
 app.use(APP_PATH, generalRoutes);
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0" () => {
  logger.info(`Server is now running on port ${PORT}`);
 });
 
