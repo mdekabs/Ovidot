@@ -134,3 +134,84 @@
 2024-03-08T11:20:51.399Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 7ms 304
 2024-03-08T11:20:51.402Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 1ms 304
 2024-03-08T11:20:51.995Z INFO: GET /api/v1/swagger/favicon-32x32.png 304 1ms 304
+2024-03-08T11:42:59.950Z INFO: Server is now running on port 5000 
+2024-03-08T11:42:59.970Z INFO: MongoDB connected! 
+2024-03-08T11:43:09.849Z INFO: GET /api/v1/swagger/ 304 12ms 304
+2024-03-08T11:43:09.916Z INFO: GET /api/v1/swagger/swagger-ui.css 304 3ms 304
+2024-03-08T11:43:09.935Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 1ms 304
+2024-03-08T11:43:09.965Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 0ms 304
+2024-03-08T11:43:09.983Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 2ms 304
+2024-03-08T11:43:10.900Z INFO: GET /api/v1/swagger/favicon-32x32.png 304 0ms 304
+2024-03-08T12:16:59.640Z WARN: POST /api/v1/signup 400 18ms 400
+2024-03-08T12:17:50.996Z WARN: POST /api/v1/signup 400 14ms 400
+2024-03-08T12:18:57.535Z WARN: POST /api/v1/signup 400 5ms 400
+2024-03-08T12:19:17.796Z WARN: POST /api/v1/signup 400 4ms 400
+2024-03-08T12:20:20.791Z WARN: POST /signup 404 2ms 404
+2024-03-08T12:21:51.906Z WARN: POST /api/v1/signup 400 3ms 400
+2024-03-08T12:25:08.969Z INFO: Server is now running on port 5000 
+2024-03-08T12:25:09.021Z INFO: MongoDB connected! 
+2024-03-08T12:28:11.042Z WARN: POST /api/v1/auth/signup 401 26ms 401
+2024-03-08T12:29:00.683Z WARN: POST /api/v1/auth/signup 401 4ms 401
+2024-03-08T12:30:20.205Z WARN: POST /api/v1/auth/signup 401 9ms 401
+2024-03-08T12:31:00.394Z WARN: POST /api/v1/auth/signup 401 1ms 401
+2024-03-08T12:31:19.667Z WARN: POST /api/v1/auth 401 9ms 401
+2024-03-08T12:31:49.765Z WARN: POST /api/v1/auth/signup 401 3ms 401
+2024-03-08T12:33:07.902Z WARN: POST /api/v1/signup 400 34ms 400
+2024-03-08T12:33:22.838Z WARN: POST /api/v1/signup 400 9ms 400
+2024-03-08T12:36:35.378Z INFO: Server is now running on port 5000 
+2024-03-08T12:36:35.457Z INFO: MongoDB connected! 
+2024-03-08T12:43:59.421Z WARN: POST /api/v1/auth/signup 401 25ms 401
+2024-03-08T12:46:35.379Z WARN: POST /api/v1/auth/signup 401 5ms 401
+2024-03-08T12:49:01.150Z WARN: POST /api/v1/auth/signup 401 5ms 401
+2024-03-08T12:50:08.221Z WARN: POST /api/v1/auth/signup 404 15ms 404
+2024-03-08T12:50:38.469Z WARN: POST /api/v1/auth/signup 404 5ms 404
+2024-03-08T12:55:54.762Z INFO: Server is now running on port 5000 
+2024-03-08T12:55:54.783Z INFO: MongoDB connected! 
+2024-03-08T12:56:42.111Z INFO: Server is now running on port 5000 
+2024-03-08T12:56:42.145Z INFO: MongoDB connected! 
+2024-03-08T13:09:54.287Z INFO: Server is now running on port 5000 
+2024-03-08T13:09:54.305Z INFO: MongoDB connected! 
+2024-03-08T13:14:24.928Z INFO: Server is now running on port 5000 
+2024-03-08T13:14:24.956Z INFO: MongoDB connected! 
+2024-03-08T13:24:15.674Z INFO: Server is now running on port 5000 
+2024-03-08T13:24:15.719Z INFO: MongoDB connected! 
+2024-03-08T13:24:28.999Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials f17-20020a5d50d1000000b0033e79eca6dfsm674480wrt.50 - gsmtp 
+2024-03-08T13:24:29.008Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials f17-20020a5d50d1000000b0033e79eca6dfsm674480wrt.50 - gsmtp 
+2024-03-08T13:24:29.050Z ERROR: POST /api/v1/signup 500 2806ms 500
+2024-03-08T13:24:59.978Z WARN: POST /api/v1/auth/signup 404 11ms 404
+2024-03-10T16:48:13.479Z INFO: Server is now running on port 5000 
+2024-03-10T16:48:13.549Z INFO: MongoDB connected! 
+2024-03-10T16:53:15.712Z INFO: Server is now running on port 5000 
+2024-03-10T16:53:15.763Z INFO: MongoDB connected! 
+2024-03-10T16:56:11.639Z INFO: GET /api/v1/swagger/ 304 21ms 304
+2024-03-10T16:56:11.779Z INFO: GET /api/v1/swagger/swagger-ui.css 304 6ms 304
+2024-03-10T16:56:11.815Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 4ms 304
+2024-03-10T16:56:11.848Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 15ms 304
+2024-03-10T16:56:11.863Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 25ms 304
+2024-03-10T16:57:20.715Z WARN: POST /api/v1/auth/signup 404 31ms 404
+2024-03-10T16:57:36.119Z WARN: POST /api/v1/signup 400 29ms 400
+2024-03-10T16:58:45.992Z WARN: POST /api/signup 404 0ms 404
+2024-03-10T17:03:32.806Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials t18-20020a0560001a5200b0033e7b05edf3sm4319921wry.44 - gsmtp 
+2024-03-10T17:03:32.808Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials t18-20020a0560001a5200b0033e7b05edf3sm4319921wry.44 - gsmtp 
+2024-03-10T17:03:32.823Z ERROR: POST /api/v1/signup 500 2645ms 500
+2024-03-10T17:04:09.862Z WARN: POST /api/v1/signup 404 17ms 404
+2024-03-10T17:05:54.209Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials t13-20020a25aa8d000000b00dc6d6dc9771sm762909ybi.8 - gsmtp 
+2024-03-10T17:05:54.210Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials t13-20020a25aa8d000000b00dc6d6dc9771sm762909ybi.8 - gsmtp 
+2024-03-10T17:05:54.216Z ERROR: POST /api/v1/signup 500 3305ms 500
+2024-03-10T17:07:19.405Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials h15-20020a05600c350f00b004131d2307e7sm6274088wmq.12 - gsmtp 
+2024-03-10T17:07:19.407Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials h15-20020a05600c350f00b004131d2307e7sm6274088wmq.12 - gsmtp 
+2024-03-10T17:07:19.413Z ERROR: POST /api/v1/signup 500 1881ms 500
+2024-03-10T17:08:24.751Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials m21-20020a056000175500b0033e052be14fsm4332233wrf.98 - gsmtp 
+2024-03-10T17:08:24.753Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials m21-20020a056000175500b0033e052be14fsm4332233wrf.98 - gsmtp 
+2024-03-10T17:08:24.758Z ERROR: POST /api/v1/signup 500 1935ms 500
+2024-03-10T17:13:05.301Z INFO: POST /api/v1/login 200 816ms 200

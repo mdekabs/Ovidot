@@ -2,7 +2,7 @@
 import dotenv from 'dotenv';
 import express, { json } from 'express';
 import cors from 'cors';
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose'; // Import mongoose
 import bodyParser from 'body-parser';
 import verify from './v1/middleware/tokenVerification.js';
 import { logger, appLogger } from './v1/middleware/logger.js';
@@ -73,19 +73,14 @@ const swaggerOptions = {
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
-// Connect to MongoDB database
-const client = new MongoClient(url);
-
-let db;
-
-client.connect()
+// Connect to MongoDB database using Mongoose
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
  .then(() => {
     logger.info('MongoDB connected!');
-    db = client.db(); // Get the default database
     // Example route to demonstrate database interaction
     app.get('/api/v1/example', async (req, res) => {
-      const collection = db.collection('example');
-      const data = await collection.find({}).toArray();
+      const ExampleModel = mongoose.model('Example', new mongoose.Schema({ name: String })); // Define a simple schema
+      const data = await ExampleModel.find({}).exec();
       res.json(data);
     });
  })
