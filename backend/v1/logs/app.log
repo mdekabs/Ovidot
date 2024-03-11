@@ -215,3 +215,7 @@
 535 5.7.8  https://support.google.com/mail/?p=BadCredentials m21-20020a056000175500b0033e052be14fsm4332233wrf.98 - gsmtp 
 2024-03-10T17:08:24.758Z ERROR: POST /api/v1/signup 500 1935ms 500
 2024-03-10T17:13:05.301Z INFO: POST /api/v1/login 200 816ms 200
+2024-03-11T16:38:59.970Z INFO: Server is now running on port 5000 
+2024-03-11T16:39:00.001Z INFO: MongoDB connected! 
+2024-03-11T16:40:16.547Z WARN: POST /api/v1/login 400 13ms 400
+2024-03-11T16:41:24.995Z WARN: POST /api/v1/login 400 4ms 400

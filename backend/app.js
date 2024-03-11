@@ -1,4 +1,3 @@
-
 import dotenv from 'dotenv';
 import express, { json } from 'express';
 import cors from 'cors';
@@ -74,13 +73,16 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
 // Connect to MongoDB database using Mongoose
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
- .then(() => {
+const connectToMongoDB = async () => {
+ try {
+    await mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
     logger.info('MongoDB connected!');
- })
- .catch(error => {
+ } catch (error) {
     logger.error('MongoDB connection error:', error);
- });
+ }
+};
+
+connectToMongoDB();
 
 // The rest of your application setup remains the same
 app.use(cors());
