@@ -77,12 +77,6 @@ const swaggerSpec = swaggerJSDoc(swaggerOptions);
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
  .then(() => {
     logger.info('MongoDB connected!');
-    // Example route to demonstrate database interaction
-    app.get('/api/v1/example', async (req, res) => {
-      const ExampleModel = mongoose.model('Example', new mongoose.Schema({ name: String })); // Define a simple schema
-      const data = await ExampleModel.find({}).exec();
-      res.json(data);
-    });
  })
  .catch(error => {
     logger.error('MongoDB connection error:', error);
@@ -107,7 +101,7 @@ app.use(APP_PATH + '/auth', verify, authRoutes);
 app.use(APP_PATH + '/admin', adminRoutes);
 app.use(APP_PATH, generalRoutes);
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
  logger.info(`Server is now running on port ${PORT}`);
 });
 
