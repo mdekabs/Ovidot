@@ -230,3 +230,15 @@
 2024-03-11T17:20:36.929Z INFO: Server is now running on port 5000 
 2024-03-11T17:28:14.458Z INFO: Server is now running on port 5000 
 2024-03-11T17:28:14.470Z INFO: MongoDB connected! 
+2024-03-12T11:18:20.086Z INFO: MongoDB connected! 
+2024-03-12T11:18:20.099Z INFO: Server is now running on port 5000 
+2024-03-12T11:30:15.449Z INFO: MongoDB connected! 
+2024-03-12T11:30:15.462Z INFO: Server is now running on port 5000 
+2024-03-12T11:32:59.917Z WARN: POST /api/v1/login 400 10ms 400
+2024-03-12T11:33:19.512Z WARN: POST /api/v1/login 401 674ms 401
+2024-03-12T11:33:57.461Z WARN: POST /api/v1/login 401 611ms 401
+2024-03-12T11:34:05.271Z WARN: POST /api/v1/login 401 609ms 401
+2024-03-12T11:34:23.471Z INFO: POST /api/v1/login 200 615ms 200
+2024-03-12T11:37:07.084Z INFO: MongoDB connected! 
+2024-03-12T11:37:07.099Z INFO: Server is now running on port 5000 
+2024-03-12T11:38:07.033Z WARN: POST /api/v1/signup 404 33ms 404
