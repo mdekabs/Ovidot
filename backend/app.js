@@ -1,11 +1,11 @@
 import dotenv from 'dotenv';
 import express, { json } from 'express';
 import cors from 'cors';
-import mongoose from 'mongoose'; // Import mongoose
+import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import verify from './v1/middleware/tokenVerification.js';
 import { logger, appLogger } from './v1/middleware/logger.js';
-import redisManager from './v1/services/caching.js'; // Adjust the import path as necessary
+import { createRedisClient } from './redisClient.js';
 import useragent from 'express-useragent';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
@@ -83,6 +83,9 @@ const connectToMongoDB = async () => {
 };
 
 connectToMongoDB();
+
+// Create Redis client
+const redisClient = await createRedisClient(ENVIR);
 
 // The rest of your application setup remains the same
 app.use(cors());
