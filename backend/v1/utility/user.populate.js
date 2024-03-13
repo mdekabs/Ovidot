@@ -1,3 +1,4 @@
+
 import User from '../models/user.model.js';
 
 /**
@@ -8,20 +9,17 @@ import User from '../models/user.model.js';
  * @returns {Promise<User|null>} - A promise that resolves to the user object with the cycles populated or null if not found.
  */
 export async function populateWithCyclesBy(userId, search) {
-  try {
-    /**
-     * The user object with populated cycle data.
-     * @type {User | null}
-     */
+ try {
     const user = await User.findById(userId).populate({
       path: '_cycles',
       match: search,
-    }).exec();
+    });
 
     return user || null;
-  } catch (err) {
+ } catch (err) {
+    console.error('Error populating user with cycles:', err.message);
     throw err;
-  }
+ }
 }
 
 /**
@@ -31,17 +29,12 @@ export async function populateWithCyclesBy(userId, search) {
  * @returns {Promise<User|null>} - A promise that resolves to the user object with the cycles populated or null if not found.
  */
 export async function populateWithCycles(userId) {
-  try {
-    /**
-     * The user object with populated cycle data.
-     * @type {User|null}
-     */
-    const user = await User.findById(userId).populate({
-      path: '_cycles',
-    }).exec();
+ try {
+    const user = await User.findById(userId).populate('_cycles');
 
     return user || null;
-  } catch (err) {
+ } catch (err) {
+    console.error('Error populating user with cycles:', err.message);
     throw err;
-  }
+ }
 }

@@ -244,3 +244,20 @@
 2024-03-12T11:38:07.033Z WARN: POST /api/v1/signup 404 33ms 404
 2024-03-13T00:07:11.991Z INFO: MongoDB connected! 
 2024-03-13T00:07:12.022Z INFO: Server is now running on port 5000 
+2024-03-13T10:23:06.148Z INFO: MongoDB connected! 
+2024-03-13T10:23:06.202Z INFO: Server is now running on port 5000 
+2024-03-13T10:29:39.270Z INFO: POST /api/v1/login 200 837ms 200
+2024-03-13T11:25:34.102Z INFO: Server is now running on port 5000 
+2024-03-13T11:25:34.128Z INFO: MongoDB connected! 
+2024-03-13T11:26:24.006Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials o18-20020a05600c4fd200b004132f9cf053sm2016825wmq.33 - gsmtp 
+2024-03-13T11:26:24.008Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials o18-20020a05600c4fd200b004132f9cf053sm2016825wmq.33 - gsmtp 
+2024-03-13T11:26:24.027Z ERROR: POST /api/v1/signup 500 20999ms 500
+2024-03-13T11:27:50.210Z WARN: POST /api/v1/signup 404 12ms 404
+2024-03-13T11:32:06.952Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials p30-20020a05600c1d9e00b00413eb8b6a15sm1184127wms.24 - gsmtp 
+2024-03-13T11:32:06.954Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials p30-20020a05600c1d9e00b00413eb8b6a15sm1184127wms.24 - gsmtp 
+2024-03-13T11:32:06.959Z ERROR: POST /api/v1/signup 500 1637ms 500
+2024-03-13T11:37:37.451Z WARN: POST /api/v1/signup 404 26ms 404

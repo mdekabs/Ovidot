@@ -1,3 +1,4 @@
+
 import { Schema, model } from 'mongoose';
 
 // Setup a user model
@@ -52,6 +53,10 @@ const UserSchema = Schema({
             ref: 'Cycle'
         }
     ],
+    cycleLengths: {
+        type: [Number],
+        required: false,
+    },
 });
 
 const User = model('User', UserSchema);
