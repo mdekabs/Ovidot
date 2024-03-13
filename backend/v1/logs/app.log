@@ -261,3 +261,5 @@
 535 5.7.8  https://support.google.com/mail/?p=BadCredentials p30-20020a05600c1d9e00b00413eb8b6a15sm1184127wms.24 - gsmtp 
 2024-03-13T11:32:06.959Z ERROR: POST /api/v1/signup 500 1637ms 500
 2024-03-13T11:37:37.451Z WARN: POST /api/v1/signup 404 26ms 404
+2024-03-13T13:19:31.111Z INFO: MongoDB connected! 
+2024-03-13T13:19:31.134Z INFO: Server is now running on port 5000 
