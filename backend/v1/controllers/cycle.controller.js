@@ -20,14 +20,14 @@ import { logger } from '../middleware/logger.js';
  * @returns Payload on Success
  */
 export async function createCycle(req, res) {
-  try {
+ try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return handleResponse(res, 400, errors.array()[0].msg);
     }
 
     const id = req.user.id;
-    const { period, ovulation, startdate } = req.body;
+    const { period, ovulation, startdate, cycleLengths } = req.body; // Extract cycleLengths from req.body
 
     if (!validateCreateDate(startdate)) {
         return handleResponse(res, 400, 'Specify a proper date: Date should not be less than 21 days or greater than present day');
@@ -45,8 +45,8 @@ export async function createCycle(req, res) {
         return handleResponse(res, 400, "Cycle already exist for this month: Delete to create another");
     };
 
-    // if user._cycles is false (no data), create a new one.
-    const cycleData = await calculate(period, startdate, ovulation);
+    // Pass cycleLengths to the cycle calculator
+    const cycleData = await calculate(period, startdate, ovulation, cycleLengths); // Use cycleLengths in the calculation
 
     const data = cycleParser(month, period, startdate, cycleData);
     const newCycle = await Cycle.create({...data});
@@ -62,10 +62,12 @@ export async function createCycle(req, res) {
         cycleId: newCycle.id
     });
 
-  } catch (error) {
+ } catch (error) {
     handleResponse(res, 500, "internal server error", error);
-  }
+ }
 }
+
+// The rest of the CycleController functions remain unchanged
 
 /**
  * fetch all the cycles for a given user
