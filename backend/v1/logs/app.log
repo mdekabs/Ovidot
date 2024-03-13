@@ -242,3 +242,5 @@
 2024-03-12T11:37:07.084Z INFO: MongoDB connected! 
 2024-03-12T11:37:07.099Z INFO: Server is now running on port 5000 
 2024-03-12T11:38:07.033Z WARN: POST /api/v1/signup 404 33ms 404
+2024-03-13T00:07:11.991Z INFO: MongoDB connected! 
+2024-03-13T00:07:12.022Z INFO: Server is now running on port 5000 

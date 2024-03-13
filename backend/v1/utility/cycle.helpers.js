@@ -1,15 +1,29 @@
 
+// Import necessary modules and services
 import notifications from '../services/notifications.js';
 import Cycle from '../models/cycle.model.js';
 import User from '../models/user.model.js';
 import { month as _month, calculate } from '../utility/cycle.calculator.js';
 import { cycleParser } from './cycle.parsers.js';
 
+// Constants
 const MIN_UPDATE_DIFFERENCE = 7;
-
 const DATE_FORMAT = 'YYYY-MM-DD';
-
 const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
+
+/**
+ * Validate user and start date.
+ *
+ * @param {Object} user - The user object containing information about the user.
+ * @param {Date} startdate - The start date of the cycle to be checked.
+ * @returns {boolean} - True if the user and start date are valid, false otherwise.
+ */
+const validateUserAndStartDate = (user, startdate) => {
+ if (!user || !startdate) {
+    return false;
+ }
+ return true;
+};
 
 /**
  * Check if there is an existing cycle for the given user and start date.
@@ -18,19 +32,23 @@ const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
  * @param {Date} startdate - The start date of the cycle to be checked.
  * @returns {boolean} - True if an existing cycle needs an update or deletion, false otherwise.
  */
-export const checkExistingCycle = (user, startdate) => {
-  const hasCycles = user._cycles.length > 0;
+export const checkExistingCycle = async (user, startdate) => {
+ if (!validateUserAndStartDate(user, startdate)) {
+    throw new Error('Invalid user or start date');
+ }
 
-  if (hasCycles) {
+ const hasCycles = user._cycles.length > 0;
+
+ if (hasCycles) {
     const lastCycle = user._cycles[user._cycles.length - 1];
     const nextDate = new Date(lastCycle.next_date);
     const startDate = new Date(startdate);
     const differenceInDays = (nextDate - startDate) / MILLISECONDS_IN_A_DAY;
 
     return differenceInDays > MIN_UPDATE_DIFFERENCE;
-  }
+ }
 
-  return false;
+ return false;
 };
 
 /**
@@ -42,32 +60,17 @@ export const checkExistingCycle = (user, startdate) => {
  * @throws {Error} If an error occurred during the process.
  */
 export const createCycleAndNotifyUser = async (newCycle, user, startdate) => {
-  try {
-    // Save the new cycle
+ if (!validateUserAndStartDate(user, startdate)) {
+    throw new Error('Invalid user or start date');
+ }
+
+ try {
     await newCycle.save();
-
-    const message = `Cycle created for ${startdate}`;
-
-    // Generate notification and add it to the user's list
-    const notify = notifications.generateNotification(newCycle, 'createdCycle', message);
-    user.notificationsList.push(notify);
-
-    // Manage notifications
-    notifications.manageNotification(user.notificationsList);
-
-    // Update the user's cycles and notifications list
-    user._cycles.push(newCycle._id);
-    await User.findByIdAndUpdate(user.id, {
-      _cycles: user._cycles,
-      notificationsList: user.notificationsList,
-    });
-  } catch (error) {
-    // If an error occurred, delete the new cycle
-    if (newCycle) {
-      await Cycle.findByIdAndDelete(newCycle._id);
-    }
+    await updateUserCyclesAndNotifications(user, newCycle, startdate, 'createdCycle');
+ } catch (error) {
+    await deleteCycleIfExists(newCycle);
     throw error;
-  }
+ }
 };
 
 /**
@@ -82,33 +85,24 @@ export const createCycleAndNotifyUser = async (newCycle, user, startdate) => {
  * @throws {Error} If an error occurred during the process.
  */
 export const performUpdateAndNotify = async (cycle, period, ovulation, cycleId, user) => {
-  try {
-    const updated_at = new Date();
-    const month = _month(cycle.start_date);
-    const updatedData = await calculate(period, cycle.start_date, ovulation);
-    const data = cycleParser(month, period, cycle.start_date.toISOString(), updatedData);
+ if (!validateUserAndStartDate(user, cycle.start_date)) {
+    throw new Error('Invalid user or cycle start date');
+ }
 
-    // Update the cycle
+ try {
+    const updatedData = await calculate(period, cycle.start_date, ovulation);
+    const data = cycleParser(_month(cycle.start_date), period, cycle.start_date.toISOString(), updatedData);
     const updatedCycle = await Cycle.findByIdAndUpdate(cycleId, {
       ...data,
-      updated_at,
+      updated_at: new Date(),
     }, { new: true });
 
-    // Generate notification and add it to the user's list
-    const message = `Cycle for ${formatDate(cycle.start_date)} was updated`;
-    const notify = notifications.generateNotification(updatedCycle, 'updatedCycle', message);
-    user.notificationsList.push(notify);
-
-    // Manage notifications
-    notifications.manageNotification(user.notificationsList);
-
-    // Save the user with the updated notifications list
-    await user.save();
+    await updateUserCyclesAndNotifications(user, updatedCycle, cycle.start_date, 'updatedCycle');
 
     return updatedCycle;
-  } catch (error) {
+ } catch (error) {
     throw error;
-  }
+ }
 };
 
 /**
@@ -120,25 +114,47 @@ export const performUpdateAndNotify = async (cycle, period, ovulation, cycleId, 
  * @throws {Error} If an error occurred during the process.
  */
 export const performDeleteAndNotify = async (cycleId, user) => {
-  try {
+ try {
     const cycle = await Cycle.findByIdAndRemove(cycleId);
-    cycle.updated_at = new Date();
-
-    // Generate notification and add it to the user's list
-    const message = `Cycle deleted for ${formatDate(cycle.start_date)}`;
-    const notify = notifications.generateNotification(cycle, 'deletedCycle', message);
-    user.notificationsList.push(notify);
-
-    // Manage notifications
-    notifications.manageNotification(user.notificationsList);
-
-    // Save the user with the updated notifications list
-    await user.save();
-
+    await updateUserCyclesAndNotifications(user, cycle, cycle.start_date, 'deletedCycle');
     return cycle;
-  } catch (error) {
+ } catch (error) {
     throw error;
-  }
+ }
+};
+
+/**
+ * Update user's cycles and notifications list.
+ *
+ * @param {object} user - The user object.
+ * @param {object} cycle - The cycle object.
+ * @param {string} startdate - The start date of the cycle.
+ * @param {string} action - The action performed on the cycle.
+ */
+const updateUserCyclesAndNotifications = async (user, cycle, startdate, action) => {
+ const message = `${action === 'createdCycle' ? 'Cycle created for' : 'Cycle for'} ${formatDate(startdate)} was ${action === 'deletedCycle' ? 'deleted' : 'updated'}`;
+ const notify = notifications.generateNotification(cycle, action, message);
+ user.notificationsList.push(notify);
+
+ // Manage notifications
+ notifications.manageNotification(user.notificationsList);
+
+ // Update the user's cycles and notifications list
+ await User.findByIdAndUpdate(user.id, {
+    _cycles: user._cycles,
+    notificationsList: user.notificationsList,
+ });
+};
+
+/**
+ * Delete cycle if it exists.
+ *
+ * @param {object} cycle - The cycle object.
+ */
+const deleteCycleIfExists = async (cycle) => {
+ if (cycle) {
+    await Cycle.findByIdAndDelete(cycle._id);
+ }
 };
 
 /**
