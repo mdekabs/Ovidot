@@ -263,3 +263,57 @@
 2024-03-13T11:37:37.451Z WARN: POST /api/v1/signup 404 26ms 404
 2024-03-13T13:19:31.111Z INFO: MongoDB connected! 
 2024-03-13T13:19:31.134Z INFO: Server is now running on port 5000 
+2024-03-13T16:36:09.036Z INFO: MongoDB connected! 
+2024-03-13T16:36:09.181Z INFO: Server is now running on port 5000 
+2024-03-13T16:40:08.983Z INFO: MongoDB connected! 
+2024-03-13T16:40:09.005Z INFO: Server is now running on port 5000 
+2024-03-13T20:23:15.085Z INFO: Server is now running on port 5000 
+2024-03-13T20:23:15.154Z INFO: MongoDB connected! 
+2024-03-13T20:23:27.642Z INFO: Server is now running on port 5000 
+2024-03-13T20:23:27.658Z INFO: MongoDB connected! 
+2024-03-13T20:30:18.853Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials bn16-20020a056000061000b0033ea59bc00bsm5365231wrb.73 - gsmtp 
+2024-03-13T20:30:18.856Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials bn16-20020a056000061000b0033ea59bc00bsm5365231wrb.73 - gsmtp 
+2024-03-13T20:30:18.903Z ERROR: POST /api/v1/signup 500 36149ms 500
+2024-03-13T20:31:47.410Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials x17-20020adfdd91000000b0033e03d37685sm12322651wrl.55 - gsmtp 
+2024-03-13T20:31:47.413Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials x17-20020adfdd91000000b0033e03d37685sm12322651wrl.55 - gsmtp 
+2024-03-13T20:31:47.426Z ERROR: POST /api/v1/signup 500 2536ms 500
+2024-03-13T20:56:45.509Z ERROR: MongoDB connection error: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string. 
+2024-03-13T20:56:45.533Z INFO: Server is now running on port 5000 
+2024-03-13T20:57:59.378Z ERROR: MongoDB connection error: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string. 
+2024-03-13T20:57:59.410Z INFO: Server is now running on port 5000 
+2024-03-13T21:02:32.974Z INFO: MongoDB connected! 
+2024-03-13T21:02:32.985Z INFO: Server is now running on port 5000 
+2024-03-13T21:36:10.011Z INFO: MongoDB connected! 
+2024-03-13T21:36:10.055Z INFO: Server is now running on port 5000 
+2024-03-13T21:36:24.318Z WARN: POST /api/v1/signup 404 153ms 404
+2024-03-13T21:39:36.609Z INFO: POST /api/v1/login 200 2886ms 200
+2024-03-13T21:44:37.577Z INFO: GET /api/v1/swagger/ 304 6ms 304
+2024-03-13T21:44:37.691Z INFO: GET /api/v1/swagger/swagger-ui-init.js 200 1ms 200
+2024-03-13T21:44:37.771Z INFO: GET /api/v1/swagger/swagger-ui.css 200 96ms 200
+2024-03-13T21:44:37.800Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 200 80ms 200
+2024-03-13T21:44:38.006Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 200 291ms 200
+2024-03-13T21:48:08.125Z WARN: POST /api/v1/cycles/create 404 5ms 404
+2024-03-13T22:08:27.360Z WARN: POST /api/v1/cycles 404 0ms 404
+2024-03-13T22:09:07.764Z WARN: POST /api/v1/cycles/create 404 1ms 404
+2024-03-13T22:09:57.497Z WARN: POST /api/v1/cycles/create 404 0ms 404
+2024-03-13T22:19:30.719Z WARN: POST /api/v1/cycles/create 404 0ms 404
+2024-03-13T22:20:26.694Z WARN: POST /api/v1/cycles/create 404 1ms 404
+2024-03-13T22:23:00.410Z WARN: POST /api/v1/cycles/ 404 0ms 404
+2024-03-14T06:26:07.905Z INFO: MongoDB connected! 
+2024-03-14T06:26:08.004Z INFO: Server is now running on port 5000 
+2024-03-14T06:28:04.269Z INFO: POST /api/v1/login 200 731ms 200
+2024-03-14T06:29:09.227Z INFO: GET /api/v1/swagger/ 304 16ms 304
+2024-03-14T06:29:09.306Z INFO: GET /api/v1/swagger/swagger-ui.css 304 2ms 304
+2024-03-14T06:29:09.328Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 1ms 304
+2024-03-14T06:29:09.349Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 1ms 304
+2024-03-14T06:29:09.380Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 9ms 304
+2024-03-14T06:31:27.016Z WARN: POST /api/v1/cycles/create 404 2ms 404
+2024-03-14T06:34:23.703Z WARN: POST /api/v1/create 404 1ms 404
+2024-03-14T06:35:13.830Z WARN: POST /api/v1/cycle/create 404 1ms 404
+2024-03-14T06:35:24.846Z WARN: POST /api/v1/cycles/create 404 1ms 404
+2024-03-14T06:44:57.359Z WARN: POST /api/v1/cycles/create 404 0ms 404
+2024-03-14T06:45:08.767Z WARN: POST /api/v1/cycles/create 404 1ms 404

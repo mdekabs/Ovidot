@@ -24,7 +24,7 @@ const app = express();
 
 // Get environment variables
 const { HOST, ENVIR, PORT, USERNAME, PASSWORD, REDISPORT, PRIKEY, CRT, PEMFILE, MONGODB_URI } = process.env;
-const url = ENVIR !== 'test' ? MONGODB_URI : process.env.TESTDB;
+const url = ENVIR !== 'test' ? MONGODB_URI : process.env.MONGODB_URI;
 
 // URL path
 const APP_PATH = '/api/v1';
