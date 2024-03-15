@@ -4,14 +4,12 @@ import { month as _month, calculate } from '../utility/cycle.calculator.js';
 import User from '../models/user.model.js';
 import { validationResult } from 'express-validator';
 import { populateWithCycles, populateWithCyclesBy } from '../utility/user.populate.js';
-import { validateCreateDate, validateUpdateDate } from '../utility/date.validate.js';
 import redisManager from '../services/caching.js';
 import { cycleFilter, cycleParser, MONTHS } from '../utility/cycle.parsers.js';
 import { checkExistingCycle, createCycleAndNotifyUser,
 	performUpdateAndNotify, performDeleteAndNotify } from '../utility/cycle.helpers.js';
 import { handleResponse } from '../utility/handle.response.js';
 import { logger } from '../middleware/logger.js';
-
 
 /**
  * Creates a cycle for the user with provided params.
@@ -29,9 +27,7 @@ export async function createCycle(req, res) {
     const id = req.user.id;
     const { period, ovulation, startdate, cycleLengths } = req.body; // Extract cycleLengths from req.body
 
-    if (!validateCreateDate(startdate)) {
-        return handleResponse(res, 400, 'Specify a proper date: Date should not be less than 21 days or greater than present day');
-    }
+    // The cycle calculator's validatePeriod and validateDate functions will now handle the validation
 
     // Get the month for the date
     const month = _month(startdate);
@@ -55,7 +51,7 @@ export async function createCycle(req, res) {
     await createCycleAndNotifyUser(newCycle, user, startdate);
 
     // Handle cache
-    await Promise.resolve(redisManager.cacheDel(id, newCycle.year.toString()));
+    await redisManager.cacheDel(id, newCycle.year.toString());
 
     return res.status(201).json({
         message: 'Cycle created',
@@ -76,7 +72,7 @@ export async function createCycle(req, res) {
  * @returns Payload on Success
  */ 
 export async function fetchAllCycles(req, res) {
-  try {
+ try {
     const id = req.user.id;
     const year = req.query.year;
 
@@ -101,13 +97,13 @@ export async function fetchAllCycles(req, res) {
 
 		// Cache data if year is provided
 		if (year) {
-			redisManager.cacheSet(id, year.toString(), JSON.stringify(cycles));
+			await redisManager.cacheSet(id, year.toString(), JSON.stringify(cycles));
 		};
 
     return res.status(200).json(cycles);
-  } catch (err) {
+ } catch (err) {
     return handleResponse(res, 500, 'Internal Server Error', err);
-  }
+ }
 }
 
 /**
@@ -150,7 +146,7 @@ export async function fetchMonth(req, res) {
 
 		// validate year
 		if (year && (typeof +year !== 'number' || isNaN(year) ||+year < 1900 || +year > 2100)) {
-		  return handleResponse(res, 400, 'Invalid year');
+		 return handleResponse(res, 400, 'Invalid year');
 		};
 
 		// validate month
@@ -220,23 +216,13 @@ export async function updateCycle(req, res) {
 			return handleResponse(res, 400, "Update can't be made after 30 days from start date");
 		};
 
-		// Validate the ovulation date.
-		if (ovulation && !validateUpdateDate(cycle.start_date, ovulation, cycle.period)) {
-			return handleResponse(res, 400, 'Ovulation date must not exceed 18 days from start date');
-		}
-
-		// If period is not provided, then use the current period
-		if (!period) {
-			period = cycle.period;
-		}
-
 		// Update and notify user
 		const updatedCycle = await performUpdateAndNotify(cycle, period, ovulation, cycleId, user);
 
 		const updated = cycleFilter(updatedCycle);
 
 		// Handle cache
-		await Promise.resolve(redisManager.cacheDel(userId, updated.year.toString()));		
+		await redisManager.cacheDel(userId, updated.year.toString());		
 
 		return res.status(200).json({
 			updated
@@ -249,7 +235,6 @@ export async function updateCycle(req, res) {
 			handleResponse(res, 500, "internal server error", error);
 		}
 	}
-}
 
 /**
  * Delete cycle by cycleId for a given use
@@ -271,10 +256,10 @@ export async function deleteCycle(req, res) {
 		}
 
 		// Delete and notify user
-		const deletdCycle = await performDeleteAndNotify(cycleId, user)
+		const deletedCycle = await performDeleteAndNotify(cycleId, user)
 
 		// Handle cache
-		await Promise.resolve(redisManager.cacheDel(userId, deletdCycle.year.toString()));
+		await redisManager.cacheDel(userId, deletedCycle.year.toString());
 
 		return res.status(204).send('Cycle deleted');
 	} catch (error) {
