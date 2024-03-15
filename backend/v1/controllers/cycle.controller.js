@@ -29,8 +29,6 @@ export async function createCycle(req, res) {
 
     // The cycle calculator's validatePeriod and validateDate functions will now handle the validation
 
-    // Get the month for the date
-    const month = _month(startdate);
 
     const user = await populateWithCycles(id);
     if (user === null) {
@@ -41,6 +39,7 @@ export async function createCycle(req, res) {
         return handleResponse(res, 400, "Cycle already exist for this month: Delete to create another");
     };
 
+   const month = _month(startdate);
     // Pass cycleLengths to the cycle calculator
     const cycleData = await calculate(period, startdate, ovulation, cycleLengths); // Use cycleLengths in the calculation
 

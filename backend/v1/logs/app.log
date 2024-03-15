@@ -366,3 +366,59 @@
 2024-03-15T14:57:14.137Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js.map 200 55ms 200
 2024-03-15T14:58:31.272Z WARN: POST /api/v1/auth/cycles/create 400 27ms 400
 2024-03-15T14:59:01.346Z WARN: POST /api/v1/auth/cycles/create 400 10ms 400
+2024-03-15T15:18:15.115Z INFO: MongoDB connected! 
+2024-03-15T15:18:15.125Z INFO: Server is now running on port 5000 
+2024-03-15T15:19:44.615Z INFO: POST /api/v1/login 200 880ms 200
+2024-03-15T15:22:01.287Z WARN: POST /api/v1/auth/cycles/create 400 37ms 400
+2024-03-15T15:22:24.975Z INFO: GET /api/v1/auth/cycles/getall 200 14ms 200
+2024-03-15T15:23:41.426Z INFO: 2024 cache data deleted 
+2024-03-15T15:23:41.430Z INFO: DELETE /api/v1/auth/cycles/65f452bf39b319db58d69155 204 96ms 204
+2024-03-15T15:23:55.245Z INFO: GET /api/v1/auth/cycles/getall 200 9ms 200
+2024-03-15T15:26:08.392Z WARN: POST /api/v1/auth/cycles/create 400 15ms 400
+2024-03-15T15:26:52.388Z INFO: GET /api/v1/auth/cycles/getall 200 11ms 200
+2024-03-15T15:29:15.382Z INFO: MongoDB connected! 
+2024-03-15T15:29:15.399Z INFO: Server is now running on port 5000 
+2024-03-15T15:31:10.644Z INFO: POST /api/v1/login 200 900ms 200
+2024-03-15T15:32:17.379Z INFO: GET /api/v1/auth/cycles/getall 200 61ms 200
+2024-03-15T15:33:45.597Z WARN: POST /api/v1/auth/cycles/create 400 33ms 400
+2024-03-15T20:08:53.024Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.028Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.031Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.032Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.084Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.086Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.189Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.192Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.345Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.347Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.549Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.552Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.805Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:53.807Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:54.110Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:54.112Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:54.465Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:54.467Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:54.870Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:54.873Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:55.326Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:55.328Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:55.830Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:08:55.840Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-15T20:10:11.897Z INFO: MongoDB connected! 
+2024-03-15T20:10:11.909Z INFO: Server is now running on port 5000 
+2024-03-15T20:12:39.386Z INFO: MongoDB connected! 
+2024-03-15T20:12:39.398Z INFO: Server is now running on port 5000 
+2024-03-15T20:15:16.621Z INFO: POST /api/v1/login 200 940ms 200
+2024-03-15T20:15:55.477Z ERROR: Cannot populate path `_cycles` because it is not in your schema. Set the `strictPopulate` option to false to override. 
+2024-03-15T20:15:55.482Z ERROR: GET /api/v1/auth/cycles/getall 500 55ms 500
+2024-03-15T20:16:07.625Z ERROR: Cannot populate path `_cycles` because it is not in your schema. Set the `strictPopulate` option to false to override. 
+2024-03-15T20:16:07.628Z ERROR: GET /api/v1/auth/cycles/getall 500 8ms 500
+2024-03-15T20:16:34.084Z ERROR: Cannot populate path `_cycles` because it is not in your schema. Set the `strictPopulate` option to false to override. 
+2024-03-15T20:16:34.086Z ERROR: GET /api/v1/auth/cycles/getall 500 7ms 500
+2024-03-15T20:16:48.209Z ERROR: Cannot populate path `_cycles` because it is not in your schema. Set the `strictPopulate` option to false to override. 
+2024-03-15T20:16:48.215Z ERROR: GET /api/v1/auth/cycles/getall 500 16ms 500
+2024-03-15T20:16:58.650Z INFO: MongoDB connected! 
+2024-03-15T20:16:58.653Z ERROR: MongoDB connection error: EIO: i/o error, write 
+2024-03-15T20:16:58.653Z ERROR: Not connecting to DB. check is your mongoDB is running 
+2024-03-15T20:16:58.667Z INFO: Server is now running on port 5000 
