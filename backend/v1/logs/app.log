@@ -317,3 +317,30 @@
 2024-03-14T06:35:24.846Z WARN: POST /api/v1/cycles/create 404 1ms 404
 2024-03-14T06:44:57.359Z WARN: POST /api/v1/cycles/create 404 0ms 404
 2024-03-14T06:45:08.767Z WARN: POST /api/v1/cycles/create 404 1ms 404
+2024-03-14T15:32:52.851Z INFO: Server is now running on port 5000 
+2024-03-14T15:40:41.961Z INFO: MongoDB connected! 
+2024-03-14T15:40:41.982Z INFO: Server is now running on port 5000 
+2024-03-14T22:22:24.570Z INFO: Server is now running on port 5000 
+2024-03-14T22:22:54.542Z ERROR: MongoDB connection error: connect ECONNREFUSED 127.0.0.1:27017 
+2024-03-14T22:22:54.545Z ERROR: Not connecting to DB. check is your mongoDB is running 
+2024-03-14T22:31:04.493Z INFO: MongoDB connected! 
+2024-03-14T22:31:04.514Z INFO: Server is now running on port 5000 
+2024-03-14T22:33:18.808Z WARN: POST /api/v1/signup 400 56ms 400
+2024-03-14T22:34:35.958Z WARN: POST /api/v1/signup 404 223ms 404
+2024-03-14T22:36:11.550Z WARN: POST /api/v1/login 401 570ms 401
+2024-03-14T22:36:24.137Z WARN: POST /api/v1/login 401 552ms 401
+2024-03-14T22:36:43.874Z INFO: POST /api/v1/login 200 585ms 200
+2024-03-14T22:37:47.222Z INFO: GET /api/v1/swagger/ 304 5ms 304
+2024-03-14T22:37:47.338Z INFO: GET /api/v1/swagger/swagger-ui.css 304 3ms 304
+2024-03-14T22:37:47.351Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 0ms 304
+2024-03-14T22:37:47.382Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 8ms 304
+2024-03-14T22:37:47.396Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 1ms 304
+2024-03-14T22:39:13.617Z WARN: POST /api/v1/create 404 1ms 404
+2024-03-14T22:39:39.254Z WARN: POST /api/v1/cycles/create 404 1ms 404
+2024-03-14T22:39:54.768Z WARN: POST /api/v1/cycles/create 404 0ms 404
+2024-03-14T22:43:02.180Z WARN: POST /api/v1/cycles 404 0ms 404
+2024-03-14T22:43:11.554Z WARN: POST /api/v1/cycles 404 0ms 404
+2024-03-14T22:44:25.253Z WARN: POST /api/v1/cycles 404 0ms 404
+2024-03-14T22:56:25.661Z WARN: POST /api/v1/cycles 404 1ms 404
+2024-03-14T22:56:45.010Z WARN: POST /api/v1/cycles/create 404 0ms 404
+2024-03-14T22:59:56.815Z WARN: POST /api/v1/auth/cycles/create 400 109ms 400

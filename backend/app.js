@@ -79,6 +79,7 @@ const connectToMongoDB = async () => {
     logger.info('MongoDB connected!');
  } catch (error) {
     logger.error('MongoDB connection error:', error);
+   logger.error("Not connecting to DB. check is your mongoDB is running");
  }
 };
 
