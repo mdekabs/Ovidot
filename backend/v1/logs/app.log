@@ -344,3 +344,25 @@
 2024-03-14T22:56:25.661Z WARN: POST /api/v1/cycles 404 1ms 404
 2024-03-14T22:56:45.010Z WARN: POST /api/v1/cycles/create 404 0ms 404
 2024-03-14T22:59:56.815Z WARN: POST /api/v1/auth/cycles/create 400 109ms 400
+2024-03-15T14:48:41.598Z ERROR: MongoDB connection error: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string. 
+2024-03-15T14:48:41.601Z ERROR: Not connecting to DB. check is your mongoDB is running 
+2024-03-15T14:48:41.637Z INFO: Server is now running on port 5000 
+2024-03-15T14:49:53.806Z INFO: MongoDB connected! 
+2024-03-15T14:49:53.816Z INFO: Server is now running on port 5000 
+2024-03-15T14:52:44.148Z INFO: GET /api/v1/swagger/ 304 18ms 304
+2024-03-15T14:52:44.219Z INFO: GET /api/v1/swagger/swagger-ui.css 304 3ms 304
+2024-03-15T14:52:44.230Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 2ms 304
+2024-03-15T14:52:44.246Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 1ms 304
+2024-03-15T14:52:44.262Z INFO: GET /api/v1/swagger/swagger-ui-init.js 200 1ms 200
+2024-03-15T14:54:18.531Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials g18-20020a05600c4ed200b00413f3b16a26sm5333406wmq.35 - gsmtp 
+2024-03-15T14:54:18.536Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials g18-20020a05600c4ed200b00413f3b16a26sm5333406wmq.35 - gsmtp 
+2024-03-15T14:54:18.544Z ERROR: POST /api/v1/signup 500 4401ms 500
+2024-03-15T14:56:02.799Z INFO: POST /api/v1/login 200 722ms 200
+2024-03-15T14:57:13.491Z INFO: GET /api/v1/swagger/swagger-ui.css 304 1ms 304
+2024-03-15T14:57:14.102Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js.map 200 12ms 200
+2024-03-15T14:57:14.125Z INFO: GET /api/v1/swagger/swagger-ui.css.map 200 16ms 200
+2024-03-15T14:57:14.137Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js.map 200 55ms 200
+2024-03-15T14:58:31.272Z WARN: POST /api/v1/auth/cycles/create 400 27ms 400
+2024-03-15T14:59:01.346Z WARN: POST /api/v1/auth/cycles/create 400 10ms 400

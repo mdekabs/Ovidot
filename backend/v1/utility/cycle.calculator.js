@@ -1,4 +1,3 @@
-
 import { differenceInDays, format, parseISO, addDays } from 'date-fns';
 
 // Constants
@@ -23,6 +22,13 @@ const validateDate = (dateString, errorMessage) => {
         parseISO(dateString);
     } catch (error) {
         throw new Error(errorMessage);
+    }
+};
+
+// Helper function to validate period
+const validatePeriod = (period) => {
+    if (typeof period !== 'number' || period <= 0) {
+        throw new Error("Invalid period: Must be a positive number.");
     }
 };
 
@@ -96,10 +102,17 @@ const validateDate = (dateString, errorMessage) => {
  */
 export async function calculate(period, startDate, ovulation = null, cycleLengths = []) {
     try {
+        validatePeriod(period);
         validateCycleLengths(cycleLengths);
         validateDate(startDate, "Invalid startDate: Must be a valid date string.");
         if (ovulation) {
             validateDate(ovulation, "Invalid ovulation: Must be a valid date string.");
+            const ovulationDate = parseISO(ovulation);
+            const startDateDate = parseISO(startDate);
+            const daysDifference = differenceInDays(ovulationDate, startDateDate);
+            if (daysDifference < 0 || daysDifference > period) {
+                throw new Error("Invalid ovulation date: Must be within the menstrual cycle.");
+            }
         }
 
         const averageCycleLength = cycleLengths.reduce((sum, length) => sum + length, 0) / cycleLengths.length;

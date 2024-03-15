@@ -7,7 +7,7 @@ import { populateWithCycles, populateWithCyclesBy } from '../utility/user.popula
 import redisManager from '../services/caching.js';
 import { cycleFilter, cycleParser, MONTHS } from '../utility/cycle.parsers.js';
 import { checkExistingCycle, createCycleAndNotifyUser,
-	performUpdateAndNotify, performDeleteAndNotify } from '../utility/cycle.helpers.js';
+    performUpdateAndNotify, performDeleteAndNotify } from '../utility/cycle.helpers.js';
 import { handleResponse } from '../utility/handle.response.js';
 import { logger } from '../middleware/logger.js';
 
@@ -79,14 +79,14 @@ export async function fetchAllCycles(req, res) {
     // If a 'year' is provided, use it in the search criteria
     const search = year ? { year: year } : {};
 
-		// If there's a cache data for the year given then return the data
-		if (year) {
-			const data = await redisManager.cacheGet(id, year.toString());
-			if (data) {
-				logger.info(`${year} cache retrieved`)
-				return res.status(200).json(JSON.parse(data));
-			}
-		}
+        // If there's a cache data for the year given then return the data
+        if (year) {
+            const data = await redisManager.cacheGet(id, year.toString());
+            if (data) {
+                logger.info(`${year} cache retrieved`)
+                return res.status(200).json(JSON.parse(data));
+            }
+        }
 
     const user = await populateWithCyclesBy(id, search);
     if (!user) {
@@ -95,10 +95,10 @@ export async function fetchAllCycles(req, res) {
 
     const cycles = user._cycles.map(cycleFilter);
 
-		// Cache data if year is provided
-		if (year) {
-			await redisManager.cacheSet(id, year.toString(), JSON.stringify(cycles));
-		};
+        // Cache data if year is provided
+        if (year) {
+            await redisManager.cacheSet(id, year.toString(), JSON.stringify(cycles));
+        };
 
     return res.status(200).json(cycles);
  } catch (err) {
@@ -113,23 +113,23 @@ export async function fetchAllCycles(req, res) {
  * @returns Payload on Success
  */ 
 export async function fetchOneCycle(req, res) {
-	try {
-		const { cycleId } = req.params;
-		const userId = req.user.id;
+    try {
+        const { cycleId } = req.params;
+        const userId = req.user.id;
 
-		const user = await populateWithCyclesBy(userId, {_id: cycleId});
-		if (user === null) {
-			return handleResponse(res, 404, 'User not found');
-		}
-		if (user._cycles.length == 0) {
-			return handleResponse(res, 404, "Cycle not found");
-		}
+        const user = await populateWithCyclesBy(userId, {_id: cycleId});
+        if (user === null) {
+            return handleResponse(res, 404, 'User not found');
+        }
+        if (user._cycles.length == 0) {
+            return handleResponse(res, 404, "Cycle not found");
+        }
 
-		const cycle = cycleFilter(user._cycles[0]);
-		return res.status(200).json(cycle);
-	} catch (err) {
-		return handleResponse(res, 500, 'Internal Server Error', err);
-	}
+        const cycle = cycleFilter(user._cycles[0]);
+        return res.status(200).json(cycle);
+    } catch (err) {
+        return handleResponse(res, 500, 'Internal Server Error', err);
+    }
 }
 
 /**
@@ -139,38 +139,38 @@ export async function fetchOneCycle(req, res) {
  * @returns Payload on Success
  */
 export async function fetchMonth(req, res) {
-	try {
-		let { month } = req.params;
-		const year = req.query.year;
-		const userId = req.user.id;
+    try {
+        let { month } = req.params;
+        const year = req.query.year;
+        const userId = req.user.id;
 
-		// validate year
-		if (year && (typeof +year !== 'number' || isNaN(year) ||+year < 1900 || +year > 2100)) {
-		 return handleResponse(res, 400, 'Invalid year');
-		};
+        // validate year
+        if (year && (typeof +year !== 'number' || isNaN(year) ||+year < 1900 || +year > 2100)) {
+         return handleResponse(res, 400, 'Invalid year');
+        };
 
-		// validate month
-		if (isNaN(month) && typeof month !== 'string') {
-			return handleResponse(res, 400, 'Invalid month');
-		}
+        // validate month
+        if (isNaN(month) && typeof month !== 'string') {
+            return handleResponse(res, 400, 'Invalid month');
+        }
 
-		// If month data is sent as a Number
-		if (typeof +month === 'number' && month >= 1 && month <= 12) {
-			month = MONTHS[month];
-		} else {
-			month = month.charAt(0).toUpperCase() + month.slice(1).toLowerCase();
-		}
+        // If month data is sent as a Number
+        if (typeof +month === 'number' && month >= 1 && month <= 12) {
+            month = MONTHS[month];
+        } else {
+            month = month.charAt(0).toUpperCase() + month.slice(1).toLowerCase();
+        }
 
-		const search = year ? { month, year } : { month };
-		
-		const user = await populateWithCyclesBy(userId, search);
-		if (user === null) {
-			return handleResponse(res, 404, 'User not found');
-		}
-		return res.status(200).json(user._cycles);
-	} catch (err) {
-		return handleResponse(res, 500, 'Internal Server Error', err);
-	}
+        const search = year ? { month, year } : { month };
+        
+        const user = await populateWithCyclesBy(userId, search);
+        if (user === null) {
+            return handleResponse(res, 404, 'User not found');
+        }
+        return res.status(200).json(user._cycles);
+    } catch (err) {
+        return handleResponse(res, 500, 'Internal Server Error', err);
+    }
 }
 
 /**
@@ -180,89 +180,93 @@ export async function fetchMonth(req, res) {
  * @returns Payload on Success
  */
 export async function updateCycle(req, res) {
-	try {
-		// Validate the data
-		const errors = validationResult(req);
-		if (!errors.isEmpty()) {
-			return handleResponse(res, 400, errors.array()[0].msg);
-		}
+    try {
+        // Validate the data
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return handleResponse(res, 400, errors.array()[0].msg);
+        }
 
-		const { cycleId } = req.params;
-		const userId = req.user.id;
-		let { period, ovulation } = req.body;
+        const { cycleId } = req.params;
+        const userId = req.user.id;
+        let { period, ovulation } = req.body;
 
-		// validate period data less than 1
-		if (period <= 0) {
-			return handleResponse(res, 400, "Invalid value");
-		}
+        // validate period data less than 1
+        if (period <= 0) {
+            return handleResponse(res, 400, "Invalid value");
+        }
 
-		const user = await User.findById(userId);
-		if (!user) {
-			return handleResponse(res, 404, "User not found");
-		}
+        const user = await User.findById(userId);
+        if (!user) {
+            return handleResponse(res, 404, "User not found");
+        }
 
-		const cycle = await Cycle.findById(cycleId);
-		if (!cycle) {
-			return handleResponse(res, 404, "Cycle not found");
-		}
+        const cycle = await Cycle.findById(cycleId);
+        if (!cycle) {
+            return handleResponse(res, 404, "Cycle not found");
+        }
 
-		// Check if the user provided at least a data to update
-		if ((!period && !ovulation) || (period === cycle.period && ovulation === cycle.ovulation)) {
-			return handleResponse(res, 400, "Provide atleast a param to update: period or ovulation");
-		}
+        // Check if the user provided at least a data to update
+        if ((!period && !ovulation) || (period === cycle.period && ovulation === cycle.ovulation)) {
+            return handleResponse(res, 400, "Provide atleast a param to update: period or ovulation");
+        }
 
-		// if startdate is 30 days below current date, then update isn't possible
-		if (new Date() > new Date(cycle.start_date).setDate(new Date(cycle.start_date).getDate() + 30)) {
-			return handleResponse(res, 400, "Update can't be made after 30 days from start date");
-		};
+        // if startdate is 30 days below current date, then update isn't possible
+        const startDatePlus30Days = new Date(cycle.start_date);
+        startDatePlus30Days.setDate(startDatePlus30Days.getDate() + 30);
 
-		// Update and notify user
-		const updatedCycle = await performUpdateAndNotify(cycle, period, ovulation, cycleId, user);
+        if (new Date() > startDatePlus30Days) {
+            return handleResponse(res, 400, "Update can't be made after 30 days from start date");
+        };
 
-		const updated = cycleFilter(updatedCycle);
+        // Update and notify user
+        const updatedCycle = await performUpdateAndNotify(cycle, period, ovulation, cycleId, user);
 
-		// Handle cache
-		await redisManager.cacheDel(userId, updated.year.toString());		
+        const updated = cycleFilter(updatedCycle);
 
-		return res.status(200).json({
-			updated
-		});
-	}
-	catch (error) {
-		if (error.statusCode == 400) {
-			handleResponse(res, 400, error.message);
-		} else {
-			handleResponse(res, 500, "internal server error", error);
-		}
-	}
+        // Handle cache
+        await redisManager.cacheDel(userId, updated.year.toString());        
+
+        return res.status(200).json({
+            updated
+        });
+    }
+    catch (error) {
+        if (error.statusCode == 400) {
+            handleResponse(res, 400, error.message);
+        } else {
+            handleResponse(res, 500, "internal server error", error);
+        }
+    }
+}
 
 /**
- * Delete cycle by cycleId for a given use
+ * Delete cycle by cycleId for a given user
  * @param {Object} req - Express Request
  * @param {Object} res - Express Response
  * @returns Payload on Success
  */
 export async function deleteCycle(req, res) {
-	try {
-		const { cycleId } = req.params;
-		const userId = req.user.id;
+    try {
+        const { cycleId } = req.params;
+        const userId = req.user.id;
 
-		const user = await populateWithCyclesBy(userId, {_id: cycleId});
-		if (user === null) {
-			return handleResponse(res, 404, "User not found");
-		}
-		if (user._cycles.length == 0) {
-			return handleResponse(res, 404, "Cycle not found");
-		}
+        const user = await populateWithCyclesBy(userId, {_id: cycleId});
+        if (user === null) {
+            return handleResponse(res, 404, "User not found");
+        }
+        if (user._cycles.length == 0) {
+            return handleResponse(res, 404, "Cycle not found");
+        }
 
-		// Delete and notify user
-		const deletedCycle = await performDeleteAndNotify(cycleId, user)
+        // Delete and notify user
+        const deletedCycle = await performDeleteAndNotify(cycleId, user)
 
-		// Handle cache
-		await redisManager.cacheDel(userId, deletedCycle.year.toString());
+        // Handle cache
+        await redisManager.cacheDel(userId, deletedCycle.year.toString());
 
-		return res.status(204).send('Cycle deleted');
-	} catch (error) {
-		handleResponse(res, 500, "internal server error", error);
-	}
+        return res.status(204).send('Cycle deleted');
+    } catch (error) {
+        handleResponse(res, 500, "internal server error", error);
+    }
 };
