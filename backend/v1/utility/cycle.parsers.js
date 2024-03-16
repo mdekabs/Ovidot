@@ -8,14 +8,14 @@
  * @param {Object} data - The cycle calculated data.
  * @returns - Data to parse to cycle model.
  */
-export function cycleParser(month, period, startdate, data ) {
+export function cycleParser(month, period, startDate, data ) {
 	const result = {
 		month: month,
 		year: startdate.slice(0, 4),
 		period: period,
 		ovulation: data.ovulation,
-		start_date: startdate,
-		next_date: data.nextDate,
+		startDate: startDate,
+		nextDate: data.nextDate,
 		days: data.days,
 		period_range: data.periodRange,
 		ovulation_range: data.ovulationRange,
@@ -36,12 +36,12 @@ export function cycleFilter(cycle) {
 		year: cycle.year,
 		period: cycle.period,
 		ovulation: cycle.ovulation,
-		start_date: cycle.start_date,
-		next_date: cycle.next_date,
+		startDate: cycle.startDate,
+		nextDate: cycle.nextDate,
 		days: cycle.days,
-		period_range: cycle.period_range,
-		ovulation_range: cycle.ovulation_range,
-		unsafe_days: cycle.unsafe_days
+		periodRange: cycle.periodRange,
+		ovulationRange: cycle.ovulationRange,
+		unsafeDays: cycle.unsafeDays
 	}
 	return result;
 }
