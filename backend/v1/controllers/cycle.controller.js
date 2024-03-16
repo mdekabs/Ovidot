@@ -120,11 +120,11 @@ export async function fetchOneCycle(req, res) {
         if (user === null) {
             return handleResponse(res, 404, 'User not found');
         }
-        if (user._cycles.length == 0) {
+        if (user.cycles.length == 0) {
             return handleResponse(res, 404, "Cycle not found");
         }
 
-        const cycle = cycleFilter(user._cycles[0]);
+        const cycle = cycleFilter(user.cycles[0]);
         return res.status(200).json(cycle);
     } catch (err) {
         return handleResponse(res, 500, 'Internal Server Error', err);
@@ -254,7 +254,7 @@ export async function deleteCycle(req, res) {
         if (user === null) {
             return handleResponse(res, 404, "User not found");
         }
-        if (user._cycles.length == 0) {
+        if (user.cycles.length == 0) {
             return handleResponse(res, 404, "Cycle not found");
         }
 

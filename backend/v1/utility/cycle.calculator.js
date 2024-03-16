@@ -6,6 +6,23 @@ const UNSAFE_DAYS_BEFORE_OVULATION = 5;
 const UNSAFE_DAYS_AFTER_OVULATION = 5;
 const OVULATION_RANGE_DAYS = 15; // Days around ovulation considered unsafe
 
+// Helper function to calculate the standard deviation of an array of numbers
+const calculateStandardDeviation = (numbers) => {
+    const mean = numbers.reduce((acc, val) => acc + val, 0) / numbers.length;
+    const variance = numbers.reduce((acc, val) => acc + Math.pow(val - mean, 2), 0) / numbers.length;
+    return Math.sqrt(variance);
+};
+
+// Helper function to calculate the exact ovulation date based on cycle lengths using standard deviation
+const calculateExactOvulationDate = (cycleLengths) => {
+    const averageLength = cycleLengths.reduce((acc, val) => acc + val, 0) / cycleLengths.length;
+    const standardDeviation = calculateStandardDeviation(cycleLengths);
+
+    // Adjustment based on standard deviation
+    const adjustment = standardDeviation / 2;
+    return Math.round(averageLength + adjustment);
+};
+
 // Helper function to validate cycle lengths
 const validateCycleLengths = (cycleLengths) => {
     if (!Array.isArray(cycleLengths) || cycleLengths.length === 0) {
@@ -30,13 +47,6 @@ const validatePeriod = (period) => {
     if (typeof period !== 'number' || period <= 0) {
         throw new Error("Invalid period: Must be a positive number.");
     }
-};
-
-// Helper function to calculate the exact ovulation date based on cycle lengths
-const calculateExactOvulationDate = (cycleLengths) => {
-    const sortedLengths = cycleLengths.sort((a, b) => a - b);
-    const middleIndex = Math.floor(sortedLengths.length / 2);
-    return sortedLengths[middleIndex];
 };
 
 // Helper function to calculate the total cycle days
@@ -83,54 +93,50 @@ const getUnsafeRange = (ovulation, lastPeriodDay) => {
     return unsafeDays;
 };
 
-export async function calculate(period, startDate, ovulation = null, cycleLengths = []) {
-    try {
-        validatePeriod(period);
-        validateCycleLengths(cycleLengths);
-        validateDate(startDate, "Invalid startDate: Must be a valid date string.");
+// Main calculate function
+export function calculate(period, startDate, ovulation = null, cycleLengths = []) {
+    validatePeriod(period);
+    validateCycleLengths(cycleLengths);
+    validateDate(startDate, "Invalid startDate: Must be a valid date string.");
 
-        const dayOne = parseISO(startDate);
-        let dayLast;
+    const dayOne = parseISO(startDate);
+    let dayLast;
 
-        if (ovulation === null) {
-            const exactOvulationDate = calculateExactOvulationDate(cycleLengths);
-            ovulation = addDays(dayOne, exactOvulationDate);
-        } else {
-            validateDate(ovulation, "Invalid ovulation: Must be a valid date string.");
-            ovulation = parseISO(ovulation);
-            dayLast = addDays(dayOne, period - 1); // The last day of menstraution
+    if (ovulation === null) {
+        ovulation = calculateExactOvulationDate(cycleLengths);
+    } else {
+        validateDate(ovulation, "Invalid ovulation: Must be a valid date string.");
+        ovulation = parseISO(ovulation);
+        dayLast = addDays(dayOne, period - 1); // The last day of menstraution
 
-            if (ovulation <= dayLast) {
-                throw new Error("Invalid ovulation date: Can't occur before or during menstraution");
-            }
+        if (ovulation <= dayLast) {
+            throw new Error("Invalid ovulation date: Can't occur before or during menstraution");
         }
-
-        const totalCycleDays = getTotalCycleDays(startDate, format(ovulation, DATE_FORMAT));
-
-        const periodRange = [];
-        for (let i = 0; i < period; i++) {
-            const currDate = addDays(dayOne, i);
-            periodRange.push(format(currDate, DATE_FORMAT));
-        }
-
-        const ovulationRange = getOvulationRange(format(ovulation, DATE_FORMAT), dayLast);
-        const unsafeRange = getUnsafeRange(format(ovulation, DATE_FORMAT), addDays(parseISO(periodRange[periodRange.length - 1]), 1));
-
-        let nextDate = addDays(dayOne, totalCycleDays);
-        nextDate = format(nextDate, DATE_FORMAT);
-
-        return {
-            days: totalCycleDays,
-            periodRange,
-            ovulation: format(ovulation, DATE_FORMAT),
-            ovulationRange,
-            unsafeDays: unsafeRange,
-            nextDate
-        };
-    } catch (err) {
-        throw err; // Rethrow the error to be caught by the caller
     }
-};
+
+    const totalCycleDays = getTotalCycleDays(startDate, format(ovulation, DATE_FORMAT));
+
+    const periodRange = [];
+    for (let i = 0; i < period; i++) {
+        const currDate = addDays(dayOne, i);
+        periodRange.push(format(currDate, DATE_FORMAT));
+    }
+
+    const ovulationRange = getOvulationRange(format(ovulation, DATE_FORMAT), dayLast);
+    const unsafeRange = getUnsafeRange(format(ovulation, DATE_FORMAT), addDays(parseISO(periodRange[periodRange.length - 1]), 1));
+
+    let nextDate = addDays(dayOne, totalCycleDays);
+    nextDate = format(nextDate, DATE_FORMAT);
+
+    return {
+        days: totalCycleDays,
+        periodRange,
+        ovulation: format(ovulation, DATE_FORMAT),
+        ovulationRange,
+        unsafeDays: unsafeRange,
+        nextDate
+    };
+}
 
 // Function to get the month of a given date
 export function month(startDate) {

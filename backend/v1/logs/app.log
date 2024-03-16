@@ -439,3 +439,12 @@
 2024-03-16T13:03:40.974Z ERROR: GET /api/v1/auth/cycles/getall 500 19ms 500
 2024-03-16T13:03:43.284Z ERROR: Cannot read property 'map' of undefined 
 2024-03-16T13:03:43.286Z ERROR: GET /api/v1/auth/cycles/getall 500 6ms 500
+2024-03-16T13:15:46.060Z INFO: MongoDB connected! 
+2024-03-16T13:19:48.336Z INFO: MongoDB connected! 
+2024-03-16T13:19:48.356Z INFO: Server is now running on port 5000 
+2024-03-16T13:20:19.240Z INFO: POST /api/v1/login 200 663ms 200
+2024-03-16T13:20:56.023Z ERROR: Cannot read property 'map' of undefined 
+2024-03-16T13:20:56.026Z ERROR: GET /api/v1/auth/cycles/getall 500 16ms 500
+2024-03-16T13:27:49.551Z INFO: MongoDB connected! 
+2024-03-16T13:27:49.566Z INFO: Server is now running on port 5000 
+2024-03-16T13:28:12.779Z WARN: POST /api/v1/login 404 29ms 404
