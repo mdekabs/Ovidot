@@ -32,153 +32,20 @@ const validatePeriod = (period) => {
     }
 };
 
-/**
- * Calculates the menstrual cycle based on the provided parameters.
- * @swagger
- * /calculate:
- *   post:
- *     summary: Calculate menstrual cycle
- *     description: Calculates the menstrual cycle based on the provided parameters.
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               period:
- *                 type: integer
- *                 description: The length of the menstrual period in days.
- *               startDate:
- *                 type: string
- *                 format: date
- *                 description: The start date of the menstrual cycle. Example: "2023-01-01".
- *               ovulation:
- *                 type: string
- *                 format: date
- *                 description: The date of ovulation. If not provided, it will be calculated based on the start date and cycle lengths. Example: "2023-01-15".
- *               cycleLengths:
- *                 type: array
- *                 items:
- *                   type: integer
- *                 description: An array of cycle lengths in days for the past 6 months. Example: [28, 28, 29, 28, 28, 29].
- *     responses:
- *       200:
- *         description: The calculated menstrual cycle details.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 days:
- *                   type: integer
- *                   description: The total number of days in the cycle.
- *                 periodRange:
- *                   type: array
- *                   items:
- *                     type: string
- *                     format: date
- *                   description: The range of dates for each day in the period.
- *                 ovulation:
- *                   type: string
- *                   format: date
- *                   description: The calculated date of ovulation.
- *                 ovulationRange:
- *                   type: array
- *                   items:
- *                     type: string
- *                     format: date
- *                   description: The range of dates around the ovulation date.
- *                 unsafeDays:
- *                   type: array
- *                   items:
- *                     type: string
- *                     format: date
- *                   description: The range of dates considered unsafe for conception.
- *                 nextDate:
- *                   type: string
- *                   format: date
- *                   description: The date of the next menstrual cycle.
- */
-export async function calculate(period, startDate, ovulation = null, cycleLengths = []) {
-    try {
-        validatePeriod(period);
-        validateCycleLengths(cycleLengths);
-        validateDate(startDate, "Invalid startDate: Must be a valid date string.");
-        if (ovulation) {
-            validateDate(ovulation, "Invalid ovulation: Must be a valid date string.");
-            const ovulationDate = parseISO(ovulation);
-            const startDateDate = parseISO(startDate);
-            const daysDifference = differenceInDays(ovulationDate, startDateDate);
-            if (daysDifference < 0 || daysDifference > period) {
-                throw new Error("Invalid ovulation date: Must be within the menstrual cycle.");
-            }
-        }
-
-        const averageCycleLength = cycleLengths.reduce((sum, length) => sum + length, 0) / cycleLengths.length;
-        const variance = cycleLengths.reduce((sum, length) => sum + Math.pow(length - averageCycleLength, 2), 0) / cycleLengths.length;
-        const cycleVariability = Math.sqrt(variance);
-
-        const dayOne = parseISO(startDate);
-        let dayLast;
-
-        const periodRange = [];
-
-        if (ovulation === null) {
-            ovulation = calculateOvulationRange(startDate, averageCycleLength, cycleVariability);
-        } else {
-            ovulation = parseISO(ovulation);
-            dayLast = addDays(dayOne, period - 1); // The last day of menstraution
-
-            if (ovulation <= dayLast) {
-                throw new Error("Invalid ovulation date: Can't occur before or during menstraution");
-            }
-        }
-
-        const totalCycleDays = differenceInDays(addDays(ovulation, OVULATION_RANGE_DAYS), dayOne);
-
-        for (let i = 0; i < period; i++) {
-            const currDate = addDays(dayOne, i);
-            periodRange.push(format(currDate, DATE_FORMAT));
-        }
-
-        const ovulationRange = getOvulationRange(ovulation, dayLast);
-
-        const unsafeRange = getUnsafeRange(ovulation, addDays(parseISO(periodRange[periodRange.length - 1]), 1));
-
-        let nextDate = addDays(dayOne, totalCycleDays);
-        nextDate = format(nextDate, DATE_FORMAT);
-
-        return {
-            days: totalCycleDays,
-            periodRange,
-            ovulation: format(ovulation, DATE_FORMAT),
-            ovulationRange,
-            unsafeDays: unsafeRange,
-            nextDate
-        };
-    } catch (err) {
-        throw err; // Rethrow the error to be caught by the caller
-    }
+// Helper function to calculate the exact ovulation date based on cycle lengths
+const calculateExactOvulationDate = (cycleLengths) => {
+    const sortedLengths = cycleLengths.sort((a, b) => a - b);
+    const middleIndex = Math.floor(sortedLengths.length / 2);
+    return sortedLengths[middleIndex];
 };
 
-// Helper functions
-const calculateOvulationRange = (startDate, averageCycleLength, cycleVariability) => {
-    const dayOne = parseISO(startDate);
-    const estimatedOvulationStart = addDays(dayOne, -cycleVariability);
-    const estimatedOvulationEnd = addDays(dayOne, averageCycleLength + cycleVariability);
-
-    return [
-        format(estimatedOvulationStart, DATE_FORMAT),
-        format(estimatedOvulationEnd, DATE_FORMAT)
-    ];
-};
-
+// Helper function to calculate the total cycle days
 const getTotalCycleDays = (startDate, ovulation) => {
     const days = addDays(parseISO(ovulation), OVULATION_RANGE_DAYS);
     return differenceInDays(days, parseISO(startDate));
 };
 
+// Helper function to calculate the ovulation range
 const getOvulationRange = (ovulation, dayLast = null) => {
     const ovulationRangeStart = addDays(parseISO(ovulation), -1);
     const ovulationRangeEnd = addDays(parseISO(ovulation), 1);
@@ -196,6 +63,7 @@ const getOvulationRange = (ovulation, dayLast = null) => {
     return result;
 };
 
+// Helper function to calculate the unsafe range
 const getUnsafeRange = (ovulation, lastPeriodDay) => {
     let unsafeRangeStart;
     let i = UNSAFE_DAYS_BEFORE_OVULATION;
@@ -215,9 +83,58 @@ const getUnsafeRange = (ovulation, lastPeriodDay) => {
     return unsafeDays;
 };
 
-export function month(startdate) {
-    const dateObject = parseISO(startdate);
-    const month = format(dateObject, 'MMMM');
+export async function calculate(period, startDate, ovulation = null, cycleLengths = []) {
+    try {
+        validatePeriod(period);
+        validateCycleLengths(cycleLengths);
+        validateDate(startDate, "Invalid startDate: Must be a valid date string.");
 
+        const dayOne = parseISO(startDate);
+        let dayLast;
+
+        if (ovulation === null) {
+            const exactOvulationDate = calculateExactOvulationDate(cycleLengths);
+            ovulation = addDays(dayOne, exactOvulationDate);
+        } else {
+            validateDate(ovulation, "Invalid ovulation: Must be a valid date string.");
+            ovulation = parseISO(ovulation);
+            dayLast = addDays(dayOne, period - 1); // The last day of menstraution
+
+            if (ovulation <= dayLast) {
+                throw new Error("Invalid ovulation date: Can't occur before or during menstraution");
+            }
+        }
+
+        const totalCycleDays = getTotalCycleDays(startDate, format(ovulation, DATE_FORMAT));
+
+        const periodRange = [];
+        for (let i = 0; i < period; i++) {
+            const currDate = addDays(dayOne, i);
+            periodRange.push(format(currDate, DATE_FORMAT));
+        }
+
+        const ovulationRange = getOvulationRange(format(ovulation, DATE_FORMAT), dayLast);
+        const unsafeRange = getUnsafeRange(format(ovulation, DATE_FORMAT), addDays(parseISO(periodRange[periodRange.length - 1]), 1));
+
+        let nextDate = addDays(dayOne, totalCycleDays);
+        nextDate = format(nextDate, DATE_FORMAT);
+
+        return {
+            days: totalCycleDays,
+            periodRange,
+            ovulation: format(ovulation, DATE_FORMAT),
+            ovulationRange,
+            unsafeDays: unsafeRange,
+            nextDate
+        };
+    } catch (err) {
+        throw err; // Rethrow the error to be caught by the caller
+    }
+};
+
+// Function to get the month of a given date
+export function month(startDate) {
+    const dateObject = parseISO(startDate);
+    const month = format(dateObject, 'MMMM');
     return month;
 };

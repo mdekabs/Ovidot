@@ -422,3 +422,20 @@
 2024-03-15T20:16:58.653Z ERROR: MongoDB connection error: EIO: i/o error, write 
 2024-03-15T20:16:58.653Z ERROR: Not connecting to DB. check is your mongoDB is running 
 2024-03-15T20:16:58.667Z INFO: Server is now running on port 5000 
+2024-03-16T10:45:09.000Z INFO: MongoDB connected! 
+2024-03-16T10:45:09.014Z INFO: Server is now running on port 5000 
+2024-03-16T10:50:00.426Z WARN: POST /api/v1/login 401 662ms 401
+2024-03-16T10:50:07.487Z INFO: POST /api/v1/login 200 676ms 200
+2024-03-16T10:50:51.424Z ERROR: Cannot populate path `_cycles` because it is not in your schema. Set the `strictPopulate` option to false to override. 
+2024-03-16T10:50:51.428Z ERROR: GET /api/v1/auth/cycles/getall 500 30ms 500
+2024-03-16T10:50:54.918Z ERROR: Cannot populate path `_cycles` because it is not in your schema. Set the `strictPopulate` option to false to override. 
+2024-03-16T10:50:54.923Z ERROR: GET /api/v1/auth/cycles/getall 500 8ms 500
+2024-03-16T12:57:49.176Z INFO: MongoDB connected! 
+2024-03-16T12:57:49.189Z INFO: Server is now running on port 5000 
+2024-03-16T13:02:36.076Z INFO: MongoDB connected! 
+2024-03-16T13:02:36.089Z INFO: Server is now running on port 5000 
+2024-03-16T13:03:09.198Z INFO: POST /api/v1/login 200 634ms 200
+2024-03-16T13:03:40.972Z ERROR: Cannot read property 'map' of undefined 
+2024-03-16T13:03:40.974Z ERROR: GET /api/v1/auth/cycles/getall 500 19ms 500
+2024-03-16T13:03:43.284Z ERROR: Cannot read property 'map' of undefined 
+2024-03-16T13:03:43.286Z ERROR: GET /api/v1/auth/cycles/getall 500 6ms 500

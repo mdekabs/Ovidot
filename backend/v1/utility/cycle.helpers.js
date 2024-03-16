@@ -1,4 +1,3 @@
-
 // Import necessary modules and services
 import notifications from '../services/notifications.js';
 import Cycle from '../models/cycle.model.js';
@@ -37,10 +36,10 @@ export const checkExistingCycle = async (user, startdate) => {
     throw new Error('Invalid user or start date');
  }
 
- const hasCycles = user._cycles.length > 0;
+ const hasCycles = user.cycles.length > 0;
 
  if (hasCycles) {
-    const lastCycle = user._cycles[user._cycles.length - 1];
+    const lastCycle = user.cycles[user._cycles.length - 1];
     const nextDate = new Date(lastCycle.next_date);
     const startDate = new Date(startdate);
     const differenceInDays = (nextDate - startDate) / MILLISECONDS_IN_A_DAY;
@@ -57,14 +56,18 @@ export const checkExistingCycle = async (user, startdate) => {
  * @param {object} newCycle - The new cycle object to be saved.
  * @param {object} user - The user object.
  * @param {string} startdate - The start date of the cycle.
+ * @param {Array} cycleLengths - The array of past cycle lengths.
  * @throws {Error} If an error occurred during the process.
  */
-export const createCycleAndNotifyUser = async (newCycle, user, startdate) => {
+export const createCycleAndNotifyUser = async (newCycle, user, startdate, cycleLengths) => {
  if (!validateUserAndStartDate(user, startdate)) {
     throw new Error('Invalid user or start date');
  }
 
  try {
+    const updatedData = await calculate(newCycle.period, startdate, newCycle.ovulation, cycleLengths);
+    const data = cycleParser(_month(startdate), newCycle.period, startdate, updatedData);
+    newCycle = { ...data, updated_at: new Date() };
     await newCycle.save();
     await updateUserCyclesAndNotifications(user, newCycle, startdate, 'createdCycle');
  } catch (error) {
@@ -81,16 +84,17 @@ export const createCycleAndNotifyUser = async (newCycle, user, startdate) => {
  * @param {number} ovulation - The day of ovulation.
  * @param {string} cycleId - The ID of the cycle to update.
  * @param {object} user - The user object.
+ * @param {Array} cycleLengths - The array of past cycle lengths.
  * @return {object} - The updated cycle object.
  * @throws {Error} If an error occurred during the process.
  */
-export const performUpdateAndNotify = async (cycle, period, ovulation, cycleId, user) => {
+export const performUpdateAndNotify = async (cycle, period, ovulation, cycleId, user, cycleLengths) => {
  if (!validateUserAndStartDate(user, cycle.start_date)) {
     throw new Error('Invalid user or cycle start date');
  }
 
  try {
-    const updatedData = await calculate(period, cycle.start_date, ovulation);
+    const updatedData = await calculate(period, cycle.start_date, ovulation, cycleLengths);
     const data = cycleParser(_month(cycle.start_date), period, cycle.start_date.toISOString(), updatedData);
     const updatedCycle = await Cycle.findByIdAndUpdate(cycleId, {
       ...data,
@@ -141,7 +145,7 @@ const updateUserCyclesAndNotifications = async (user, cycle, startdate, action) 
 
  // Update the user's cycles and notifications list
  await User.findByIdAndUpdate(user.id, {
-    _cycles: user._cycles,
+    cycles: user.cycles,
     notificationsList: user.notificationsList,
  });
 };

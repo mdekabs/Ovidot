@@ -11,7 +11,7 @@ import User from '../models/user.model.js';
 export async function populateWithCyclesBy(userId, search) {
  try {
     const user = await User.findById(userId).populate({
-      path: '_cycles',
+      path: 'cycles',
       match: search,
     });
 
@@ -30,7 +30,7 @@ export async function populateWithCyclesBy(userId, search) {
  */
 export async function populateWithCycles(userId) {
  try {
-    const user = await User.findById(userId).populate('_cycles');
+    const user = await User.findById(userId).populate('cycles');
 
     return user || null;
  } catch (err) {
