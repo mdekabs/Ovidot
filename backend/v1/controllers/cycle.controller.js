@@ -25,7 +25,7 @@ export async function createCycle(req, res) {
     }
 
     const id = req.user.id;
-    const { period, ovulation, startdate, cycleLengths } = req.body; // Extract cycleLengths from req.body
+    const { period, ovulation, startDate, cycleLengths } = req.body; // Extract cycleLengths from req.body
 
     // The cycle calculator's validatePeriod and validateDate functions will now handle the validation
 
@@ -35,19 +35,19 @@ export async function createCycle(req, res) {
         return handleResponse(res, 404, 'User not found');
     }
 
-    if (checkExistingCycle(user, startdate)) {
+    if (checkExistingCycle(user, startDate)) {
         return handleResponse(res, 400, "Cycle already exist for this month: Delete to create another");
     };
 
-   const month = _month(startdate);
+   const month = _month(startDate);
     // Pass cycleLengths to the cycle calculator
-    const cycleData = await calculate(period, startdate, ovulation, cycleLengths); // Use cycleLengths in the calculation
+    const cycleData = await calculate(period, startDate, ovulation, cycleLengths); // Use cycleLengths in the calculation
 
-    const data = cycleParser(month, period, startdate, cycleData);
+    const data = cycleParser(month, period, startDate, cycleData);
     const newCycle = await Cycle.create({...data});
 
     // Create the cycle and notification for the user
-    await createCycleAndNotifyUser(newCycle, user, startdate);
+    await createCycleAndNotifyUser(newCycle, user, startDate);
 
     // Handle cache
     await redisManager.cacheDel(id, newCycle.year.toString());
@@ -92,7 +92,7 @@ export async function fetchAllCycles(req, res) {
       return handleResponse(res, 404, 'User not found');
     };
 
-    const cycles = user._cycles.map(cycleFilter);
+    const cycles = user.cycles.map(cycleFilter);
 
         // Cache data if year is provided
         if (year) {
@@ -166,7 +166,7 @@ export async function fetchMonth(req, res) {
         if (user === null) {
             return handleResponse(res, 404, 'User not found');
         }
-        return res.status(200).json(user._cycles);
+        return res.status(200).json(user.cycles);
     } catch (err) {
         return handleResponse(res, 500, 'Internal Server Error', err);
     }
@@ -211,7 +211,7 @@ export async function updateCycle(req, res) {
         }
 
         // if startdate is 30 days below current date, then update isn't possible
-        const startDatePlus30Days = new Date(cycle.start_date);
+        const startDatePlus30Days = new Date(cycle.startDate);
         startDatePlus30Days.setDate(startDatePlus30Days.getDate() + 30);
 
         if (new Date() > startDatePlus30Days) {
