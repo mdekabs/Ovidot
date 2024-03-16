@@ -1,37 +1,70 @@
-// cycle.model.js
-import mongoose from 'mongoose';
+import { Schema, model } from 'mongoose';
 
-const Schema = mongoose.Schema;
-
-const CycleSchema = new Schema({
- user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
- },
- startDate: {
-    type: Date,
-    required: true
- },
- period: {
-    type: Number,
-    required: true
- },
- ovulationDate: {
-    type: Date,
-    required: true
- },
- cycleLengths: { // Changed from 'cycleLength' to 'cycleLengths' to reflect it's an array
-    type: [Number], // Array of cycle lengths
-    required: true
- },
- // Add other cycle details as needed
- createdAt: {
-    type: Date,
-    default: Date.now
- }
+// Setup the calendar model
+const CycleSchema = Schema({
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
+    month: {
+        type: String,
+        required: true
+    },
+    year: {
+        type: String,
+        required: true
+    },
+    period: {
+        type: Number,
+        required: true,
+        min: 1
+    },
+    ovulation: {
+        type: Date,
+    },
+    startDate: {
+        type: Date,
+        required: true
+    },
+    nextDate: {
+        type: Date,
+        required: true
+    },
+    days: {
+        type: Number,
+        required: true,
+        min: 1
+    },
+    periodRange: [
+        {
+            type: Date,
+            required: true
+        }
+    ],
+    ovulationRange: [
+        {
+            type: Date,
+            required: true,
+        }
+    ],
+    unsafeDays: [
+        {
+            type: Date,
+            required: true
+        }
+    ],
+    cycleLengths: [
+        {
+            type: [Number],
+            required: true
+        }
+    ]
 });
 
-const Cycle = mongoose.model('Cycle', CycleSchema);
-
+const Cycle = model('Cycle', CycleSchema);
 export default Cycle;
+

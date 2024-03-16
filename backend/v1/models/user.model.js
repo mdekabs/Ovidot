@@ -1,35 +1,58 @@
-// user.model.js
+import { Schema, model } from 'mongoose';
 
-import mongoose from 'mongoose';
-
-const Schema = mongoose.Schema;
-
-const UserSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  // Add other user details as needed
-  cycles: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Cycle'
-  }],
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+// Setup a user model
+const UserSchema = Schema({
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: Number,
+        required: true,
+        min: 8,
+        max: 55
+    },
+    period: {
+        type: Number,
+        required: true,
+        min: 2,
+        max: 8
+    },
+    notificationsList: [
+        {
+            type: Object
+        }
+    ],
+    is_admin: {
+        type: Boolean,
+        default: false
+    },
+    reset: String,
+    resetExp: Date,
+    _cycles: [
+        {
+            type: Schema.ObjectId,
+            ref: 'Cycle'
+        }
+    ],
 });
 
-const User = mongoose.model('User', UserSchema);
-
+const User = model('User', UserSchema);
 export default User;
