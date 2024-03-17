@@ -11,7 +11,7 @@
 export function cycleParser(month, period, startDate, data ) {
 	const result = {
 		month: month,
-		year: startdate.slice(0, 4),
+		year: startDate.slice(0, 4),
 		period: period,
 		ovulation: data.ovulation,
 		startDate: startDate,
