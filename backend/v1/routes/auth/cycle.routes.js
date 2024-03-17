@@ -46,7 +46,7 @@ const router = Router();
  */
 router.post('/create', [
     body("period").isNumeric().notEmpty(),
-    body("startdate").isISO8601().notEmpty(),
+    body("startDate").isISO8601().notEmpty(),
     body("cycleLengths").isArray({ min: 1 }).notEmpty()
 ], cycleController.createCycle);
 

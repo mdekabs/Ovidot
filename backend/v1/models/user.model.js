@@ -46,7 +46,7 @@ const UserSchema = Schema({
     },
     reset: String,
     resetExp: Date,
-    _cycles: [
+    cycles: [
         {
             type: Schema.ObjectId,
             ref: 'Cycle'
