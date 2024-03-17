@@ -482,3 +482,64 @@
 2024-03-16T21:13:11.990Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 1ms 304
 2024-03-16T21:13:11.993Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 5ms 304
 2024-03-16T21:14:16.261Z WARN: POST /api/v1/auth/cycles/create 400 10ms 400
+2024-03-17T02:59:36.592Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:36.594Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:36.597Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:36.598Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:36.648Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:36.649Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:36.749Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:36.750Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:36.901Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:36.902Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:37.103Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:37.104Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:37.354Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:37.355Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:37.656Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:37.658Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:38.008Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:38.009Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:38.410Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:38.411Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:38.862Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T02:59:38.863Z ERROR: Redis Client Error connect ECONNREFUSED 127.0.0.1:6379 
+2024-03-17T03:00:35.281Z INFO: Server is now running on port 5000 
+2024-03-17T03:00:35.290Z INFO: MongoDB connected! 
+2024-03-17T03:02:34.480Z INFO: POST /api/v1/login 200 718ms 200
+2024-03-17T03:03:17.074Z WARN: GET /api/v1/auth/cycles/getall 401 2ms 401
+2024-03-17T03:03:34.993Z WARN: GET /api/v1/login 404 2ms 404
+2024-03-17T03:04:18.905Z INFO: POST /api/v1/login 200 651ms 200
+2024-03-17T03:04:59.750Z WARN: GET /api/v1/auth/cycles/getall 401 1ms 401
+2024-03-17T03:05:42.820Z WARN: GET /api/v1/auth/cycles/getall 401 0ms 401
+2024-03-17T03:06:33.469Z INFO: MongoDB connected! 
+2024-03-17T03:06:33.485Z INFO: Server is now running on port 5000 
+2024-03-17T03:08:02.287Z WARN: POST /api/v1/login 401 728ms 401
+2024-03-17T03:08:11.035Z INFO: POST /api/v1/login 200 638ms 200
+2024-03-17T03:08:41.468Z INFO: GET /api/v1/auth/cycles/getall 200 28ms 200
+2024-03-17T03:09:10.364Z INFO: GET /api/v1/swagger/ 304 5ms 304
+2024-03-17T03:09:10.459Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 6ms 304
+2024-03-17T03:09:10.472Z INFO: GET /api/v1/swagger/swagger-ui.css 304 2ms 304
+2024-03-17T03:09:10.489Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 8ms 304
+2024-03-17T03:09:10.496Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 16ms 304
+2024-03-17T03:10:09.556Z WARN: POST /api/v1/auth/cycles/create 400 5ms 400
+2024-03-17T03:10:33.495Z WARN: POST /api/v1/auth/cycles/create 400 7ms 400
+2024-03-17T09:18:26.079Z INFO: MongoDB connected! 
+2024-03-17T09:18:26.096Z INFO: Server is now running on port 5000 
+2024-03-17T09:20:26.154Z INFO: POST /api/v1/login 200 679ms 200
+2024-03-17T09:20:58.479Z INFO: GET /api/v1/swagger/ 304 4ms 304
+2024-03-17T09:20:58.537Z INFO: GET /api/v1/swagger/swagger-ui.css 304 3ms 304
+2024-03-17T09:20:58.546Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 1ms 304
+2024-03-17T09:20:58.550Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 8ms 304
+2024-03-17T09:20:58.553Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 10ms 304
+2024-03-17T09:21:36.286Z INFO: GET /api/v1/auth/cycles/getall 200 25ms 200
+2024-03-17T09:22:42.304Z WARN: POST /api/v1/auth/cycles/create 400 18ms 400
+2024-03-17T09:23:25.581Z INFO: MongoDB connected! 
+2024-03-17T09:23:25.598Z INFO: Server is now running on port 5000 
+2024-03-17T09:23:41.127Z WARN: POST /api/v1/auth/cycles/create 400 33ms 400
+2024-03-17T09:24:55.078Z INFO: MongoDB connected! 
+2024-03-17T09:24:55.094Z INFO: Server is now running on port 5000 
+2024-03-17T09:26:18.774Z INFO: POST /api/v1/login 200 637ms 200
+2024-03-17T09:27:19.074Z INFO: GET /api/v1/auth/cycles/getall 200 26ms 200
+2024-03-17T09:28:03.560Z INFO: GET /api/v1/auth/cycles/getall 200 6ms 200
+2024-03-17T09:28:18.547Z WARN: POST /api/v1/auth/cycles/create 400 7ms 400
