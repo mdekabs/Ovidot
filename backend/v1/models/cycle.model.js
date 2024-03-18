@@ -1,12 +1,12 @@
 import { Schema, model } from 'mongoose';
 
-// Setup the calendar model
+// Setup the calender model
 const CycleSchema = Schema({
-    createdAt: {
+    created_at: {
         type: Date,
         default: Date.now
     },
-    updatedAt: {
+    updated_at: {
         type: Date,
         default: Date.now
     },
@@ -26,40 +26,34 @@ const CycleSchema = Schema({
     ovulation: {
         type: Date,
     },
-    startDate: {
+    start_date: {
         type: Date,
         required: true
     },
-    nextDate: {
+    next_date: {
         type: Date,
         required: true
     },
     days: {
-        type: Number,
-        required: true,
+	    type: Number,
+	    required: true,
         min: 1
     },
-    periodRange: [
+    period_range: [
         {
             type: Date,
             required: true
         }
     ],
-    ovulationRange: [
+    ovulation_range: [
         {
             type: Date,
             required: true,
         }
     ],
-    unsafeDays: [
+    unsafe_days: [
         {
             type: Date,
-            required: true
-        }
-    ],
-    cycleLengths: [
-        {
-            type: [Number],
             required: true
         }
     ]
@@ -67,4 +61,3 @@ const CycleSchema = Schema({
 
 const Cycle = model('Cycle', CycleSchema);
 export default Cycle;
-

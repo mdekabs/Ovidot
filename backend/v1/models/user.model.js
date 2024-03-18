@@ -2,11 +2,11 @@ import { Schema, model } from 'mongoose';
 
 // Setup a user model
 const UserSchema = Schema({
-    createdAt: {
+    created_at: {
         type: Date,
         default: Date.now
     },
-    updatedAt: {
+    updated_at: {
         type: Date,
         default: Date.now
     },
@@ -46,7 +46,7 @@ const UserSchema = Schema({
     },
     reset: String,
     resetExp: Date,
-    cycles: [
+    _cycles: [
         {
             type: Schema.ObjectId,
             ref: 'Cycle'

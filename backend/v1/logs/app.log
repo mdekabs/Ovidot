@@ -543,3 +543,61 @@
 2024-03-17T09:27:19.074Z INFO: GET /api/v1/auth/cycles/getall 200 26ms 200
 2024-03-17T09:28:03.560Z INFO: GET /api/v1/auth/cycles/getall 200 6ms 200
 2024-03-17T09:28:18.547Z WARN: POST /api/v1/auth/cycles/create 400 7ms 400
+2024-03-17T12:25:44.403Z INFO: MongoDB connected! 
+2024-03-17T12:25:44.585Z INFO: Server is now running on port 5000 
+2024-03-17T12:27:13.889Z INFO: MongoDB connected! 
+2024-03-17T12:27:13.913Z INFO: Server is now running on port 5000 
+2024-03-17T12:29:23.127Z WARN: POST /api/v1/login 404 114ms 404
+2024-03-17T12:29:52.793Z WARN: POST /api/v1/login 404 14ms 404
+2024-03-17T12:32:10.342Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials bu27-20020a056000079b00b0033ecbfc6941sm7150532wrb.110 - gsmtp 
+2024-03-17T12:32:10.345Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials bu27-20020a056000079b00b0033ecbfc6941sm7150532wrb.110 - gsmtp 
+2024-03-17T12:32:10.359Z ERROR: POST /api/v1/signup 500 1946ms 500
+2024-03-17T12:33:15.140Z INFO: POST /api/v1/login 200 925ms 200
+2024-03-17T12:33:58.963Z INFO: GET /api/v1/auth/cycles/getall 200 27ms 200
+2024-03-17T12:34:12.944Z WARN: POST /api/v1/auth/cycles/create 400 8ms 400
+2024-03-17T12:34:25.852Z INFO: GET /api/v1/swagger/ 304 14ms 304
+2024-03-17T12:34:25.949Z INFO: GET /api/v1/swagger/swagger-ui-init.js 200 1ms 200
+2024-03-17T12:34:26.016Z INFO: GET /api/v1/swagger/swagger-ui.css 304 16ms 304
+2024-03-17T12:34:26.066Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 44ms 304
+2024-03-17T12:34:26.068Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 21ms 304
+2024-03-17T12:34:27.013Z INFO: GET /api/v1/swagger/favicon-32x32.png 200 20ms 200
+2024-03-17T12:35:52.777Z WARN: POST /api/v1/auth/cycles/create 400 17ms 400
+2024-03-17T16:25:45.564Z INFO: MongoDB connected! 
+2024-03-17T16:25:45.682Z INFO: Server is now running on port 5000 
+2024-03-17T16:32:23.632Z INFO: POST /api/v1/login 200 778ms 200
+2024-03-17T16:32:57.462Z INFO: GET /api/v1/auth/cycles/getall 200 27ms 200
+2024-03-17T16:33:15.942Z INFO: GET /api/v1/auth/cycles/getall 200 7ms 200
+2024-03-17T16:33:50.327Z WARN: POST /api/v1/auth/cycles/create 400 12ms 400
+2024-03-18T14:17:25.243Z INFO: MongoDB connected! 
+2024-03-18T14:17:25.282Z INFO: Server is now running on port 5000 
+2024-03-18T14:17:52.149Z INFO: MongoDB connected! 
+2024-03-18T14:17:52.163Z INFO: Server is now running on port 5000 
+2024-03-18T14:25:53.831Z WARN: POST /api/v1/signup 400 11ms 400
+2024-03-18T14:28:05.880Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials p22-20020a05600c359600b0041404f017easm9215641wmq.0 - gsmtp 
+2024-03-18T14:28:05.882Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials p22-20020a05600c359600b0041404f017easm9215641wmq.0 - gsmtp 
+2024-03-18T14:28:05.889Z ERROR: POST /api/v1/signup 500 1927ms 500
+2024-03-18T14:29:27.164Z INFO: GET /api/v1/swagger/ 304 15ms 304
+2024-03-18T14:29:27.258Z INFO: GET /api/v1/swagger/swagger-ui.css 304 3ms 304
+2024-03-18T14:29:27.305Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 0ms 304
+2024-03-18T14:29:27.327Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 35ms 304
+2024-03-18T14:29:27.332Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 36ms 304
+2024-03-18T14:29:56.485Z INFO: GET /api/v1/swagger/ 304 3ms 304
+2024-03-18T14:29:56.541Z INFO: GET /api/v1/swagger/swagger-ui.css 304 2ms 304
+2024-03-18T14:29:56.548Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 1ms 304
+2024-03-18T14:29:56.559Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 1ms 304
+2024-03-18T14:29:56.566Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 1ms 304
+2024-03-18T14:29:57.164Z INFO: GET /api/v1/swagger/favicon-32x32.png 304 1ms 304
+2024-03-18T14:32:29.887Z INFO: MongoDB connected! 
+2024-03-18T14:32:29.899Z INFO: Server is now running on port 5000 
+2024-03-18T14:32:56.092Z INFO: POST /api/v1/login 200 603ms 200
+2024-03-18T14:33:59.447Z INFO: GET /api/v1/swagger/ 304 8ms 304
+2024-03-18T14:33:59.529Z INFO: GET /api/v1/swagger/swagger-ui.css 304 2ms 304
+2024-03-18T14:33:59.559Z INFO: GET /api/v1/swagger/swagger-ui-init.js 200 1ms 200
+2024-03-18T14:33:59.576Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 8ms 304
+2024-03-18T14:33:59.578Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 8ms 304
+2024-03-18T14:34:44.820Z INFO: 2024 cache data deleted 
+2024-03-18T14:34:44.822Z INFO: POST /api/v1/auth/cycles/create 201 318ms 201
