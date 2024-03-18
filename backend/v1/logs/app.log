@@ -601,3 +601,22 @@
 2024-03-18T14:33:59.578Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 8ms 304
 2024-03-18T14:34:44.820Z INFO: 2024 cache data deleted 
 2024-03-18T14:34:44.822Z INFO: POST /api/v1/auth/cycles/create 201 318ms 201
+2024-03-18T15:30:12.008Z INFO: Server is now running on port 5000 
+2024-03-18T15:30:15.407Z ERROR: MongoDB connection error: bad auth : authentication failed 
+2024-03-18T15:30:15.410Z ERROR: Not connecting to DB. check is your mongoDB is running 
+2024-03-18T15:38:47.182Z INFO: Server is now running on port 5000 
+2024-03-18T15:38:49.324Z ERROR: MongoDB connection error: bad auth : authentication failed 
+2024-03-18T15:38:49.327Z ERROR: Not connecting to DB. check is your mongoDB is running 
+2024-03-18T16:06:42.425Z INFO: Server is now running on port 5000 
+2024-03-18T16:09:29.510Z INFO: Server is now running on port 5000 
+2024-03-18T16:10:30.505Z INFO: Server is now running on port 5000 
+2024-03-18T16:11:10.079Z INFO: Server is now running on port 5000 
+2024-03-18T16:36:03.489Z INFO: Server is now running on port 5000 
+2024-03-18T16:52:09.641Z INFO: Server is now running on port 5000 
+2024-03-18T16:52:12.320Z ERROR: MongoDB connection error: bad auth : authentication failed 
+2024-03-18T16:52:12.324Z ERROR: Not connecting to DB. check is your mongoDB is running 
+2024-03-18T16:52:37.917Z ERROR: MongoDB connection error: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string. 
+2024-03-18T16:52:37.920Z ERROR: Not connecting to DB. check is your mongoDB is running 
+2024-03-18T16:52:37.943Z INFO: Server is now running on port 5000 
+2024-03-18T16:53:14.937Z INFO: Server is now running on port 5000 
+2024-03-18T16:53:14.955Z INFO: MongoDB connected! 
