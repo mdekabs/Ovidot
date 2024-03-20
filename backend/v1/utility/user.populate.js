@@ -45,3 +45,15 @@ export async function populateWithCycles(userId) {
     throw err;
   }
 }
+
+export async function getCylcleLengthsFromDB(userId) {
+  const user = await user.findById(userId).populate({
+    path: "_cycles",
+  }).exec();
+  return user.cycleLengths || [];
+}
+
+catch (err) {
+  throw err;
+}
+}
