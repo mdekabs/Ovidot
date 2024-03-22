@@ -1,77 +1,7 @@
 // CYCLE CALCULATOR
-
+import cycleLengthsFromDB from "./user.populate.js";
 const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
 
-/**
- * Calculate the estimated cycle for the individual.
- * Note: this calculator is based on the average 28 days cycle.
- * Proper estimation will be made in later versions from data provided
- * by users to get an accurate prediction.
- *
- * @param {Number} period - the number of days of menstruation
- * @param {Date} startDate - the beginning of the user cycle YYYY-MM-DD
- * @param {Date} ovulation - the day the user experienced ovulation in the cycle. YYYY-MM-DD
- * @returns {Promise} - a promise that resolves to an object with variables of days (cycle duration), periodRange,
- * ovulationRange, unsafeDays, and nextDate.
- */
-export function calculate(period, startDate, ovulation = null) {
-    return new Promise((resolve, reject) => {
-        try {
-            const dayOne = new Date(startDate);
-            let dayLast;
-
-            const periodRange = [];
-
-            if (ovulation === null) {
-                ovulation = new Date(dayOne);
-                ovulation.setDate(dayOne.getDate() + 9 + period);
-            } else {
-                ovulation = new Date(ovulation);
-                // check if ovulation occurs before or during period range.
-                // if it does, throw an error
-                dayLast = new Date(dayOne);
-                dayLast.setDate(dayLast.getDate() + period - 1); // The last day of menstraution
-
-                if (ovulation <= dayLast) {
-                    const err = new Error("Invalid ovulation date: Can't occur before or during menstraution");
-                    err.statusCode = 400;
-                    reject(err);
-                }
-            }
-
-            // Get the total cycle days
-            const totalCycleDays = getTotalCycleDays(dayOne, ovulation);
-
-            // Get the period range by adding each day.
-            for (let i = 0; i < period; i++) {
-                const currDate = new Date(dayOne);
-                currDate.setDate(dayOne.getDate() + i);
-                periodRange.push(formatDate(currDate));
-            }
-
-            // Calculate the predicted start date and end date for ovulation.
-            const ovulationRange = getOvulationRange(ovulation, dayLast);
-
-            // Calculate the unsafeRange
-            const unsafeRange = getUnsafeRange(ovulation, new Date(periodRange[periodRange.length - 1]));
-
-            let nextDate = new Date(dayOne);
-            nextDate.setDate(dayOne.getDate() + totalCycleDays);
-            nextDate = formatDate(nextDate);
-
-            resolve({
-                days: totalCycleDays,
-                periodRange,
-                ovulation: formatDate(ovulation),
-                ovulationRange,
-                unsafeDays: unsafeRange,
-                nextDate
-            });
-        } catch (err) {
-            reject(err);
-        }
-    });
-};
 
 /**
  * Get the total number of days in the menstrual cycle.

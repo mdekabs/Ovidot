@@ -1,6 +1,7 @@
+
 import { Schema, model } from 'mongoose';
 
-// Setup the calender model
+// Setup the calendar model
 const CycleSchema = Schema({
     created_at: {
         type: Date,
@@ -35,8 +36,8 @@ const CycleSchema = Schema({
         required: true
     },
     days: {
-	    type: Number,
-	    required: true,
+        type: Number,
+        required: true,
         min: 1
     },
     period_range: [
@@ -55,6 +56,13 @@ const CycleSchema = Schema({
         {
             type: Date,
             required: true
+        }
+    ],
+    cycleLengths: [
+        {
+            type: Number,
+            required: true,
+            min: 1
         }
     ]
 });
