@@ -2,7 +2,7 @@
 import notifications from '../services/notifications.js';
 import Cycle from '../models/cycle.model.js';
 import User from '../models/user.model.js';
-import { month as _month, calculate } from '../utility/cycle.calculator.js';
+import { month as _month, } from '../utility/cycle.calculator.js';
 import { cycleParser } from './cycle.parsers.js';
 
 const MIN_UPDATE_DIFFERENCE = 7;
