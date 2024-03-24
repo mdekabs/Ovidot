@@ -1,20 +1,6 @@
 // CYCLE CALCULATOR
 const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
 
-
-/**
- * Get the total number of days in the menstrual cycle.
- *
- * @param {Date} startDate - the beginning of the user cycle
- * @param {Date} ovulation - the day the user experienced ovulation
- * @returns {Number} - the total number of days in the cycle
- */
-const getTotalCycleDays = (startDate, ovulation) => {
-    const days = new Date(ovulation);
-    days.setDate(ovulation.getDate() + 15);
-    return (days - startDate) / MILLISECONDS_IN_A_DAY;
-};
-
 /**
  * Get the range of ovulation dates.
  *

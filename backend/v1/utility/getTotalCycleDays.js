@@ -1,14 +1,9 @@
 
-/**
- * Calculate the total cycle days based on the start date and ovulation date,
- * considering the variance in cycle lengths.
- *
- * @param {Date} startDate - The start date of the cycle
- * @param {Date} ovulation - The ovulation date of the cycle
- * @param {Number} variance - The variance in cycle lengths
- * @returns {Number} - The total cycle days
- */
 export const getTotalCycleDays = (startDate, ovulation, variance) => {
+    if (!ovulation) {
+        throw new Error('Ovulation date is required');
+    }
+
     const days = new Date(ovulation);
     // Add the average number of days from ovulation to the start of the next cycle,
     // considering the variance

@@ -620,3 +620,23 @@
 2024-03-18T16:52:37.943Z INFO: Server is now running on port 5000 
 2024-03-18T16:53:14.937Z INFO: Server is now running on port 5000 
 2024-03-18T16:53:14.955Z INFO: MongoDB connected! 
+2024-03-24T08:10:51.480Z INFO: Server is now running on port 5000 
+2024-03-24T08:10:51.515Z INFO: MongoDB connected! 
+2024-03-24T08:24:30.096Z INFO: MongoDB connected! 
+2024-03-24T08:24:30.113Z INFO: Server is now running on port 5000 
+2024-03-24T08:25:12.170Z INFO: GET /api/v1/swagger/ 304 50ms 304
+2024-03-24T08:25:12.318Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 1ms 304
+2024-03-24T08:25:12.328Z INFO: GET /api/v1/swagger/swagger-ui.css 200 66ms 200
+2024-03-24T08:25:12.379Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 200 65ms 200
+2024-03-24T08:25:12.510Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 200 209ms 200
+2024-03-24T08:28:29.258Z WARN: POST /api/v1/login 401 699ms 401
+2024-03-24T08:28:36.429Z INFO: POST /api/v1/login 200 556ms 200
+2024-03-24T08:29:32.934Z INFO: GET /api/v1/auth/cycles/getall 200 107ms 200
+2024-03-24T08:30:38.887Z ERROR: Cannot read properties of undefined (reading 'getDate') 
+2024-03-24T08:30:38.890Z ERROR: POST /api/v1/auth/cycles/create 500 15ms 500
+2024-03-24T09:32:09.350Z INFO: MongoDB connected! 
+2024-03-24T09:32:09.362Z INFO: Server is now running on port 5000 
+2024-03-24T09:32:18.357Z ERROR: Ovulation date is required 
+2024-03-24T09:32:18.366Z ERROR: POST /api/v1/auth/cycles/create 500 39ms 500
+2024-03-24T09:32:52.991Z WARN: POST /api/v1/auth/cycles/getall 404 4ms 404
+2024-03-24T09:32:57.674Z INFO: GET /api/v1/auth/cycles/getall 200 8ms 200
