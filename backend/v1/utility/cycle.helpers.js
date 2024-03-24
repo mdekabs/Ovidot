@@ -2,13 +2,13 @@
 import notifications from '../services/notifications.js';
 import Cycle from '../models/cycle.model.js';
 import User from '../models/user.model.js';
-import { month as _month, } from '../utility/cycle.calculator.js';
+import { month as _month } from './cycle.calculator.js';
 import { cycleParser } from './cycle.parsers.js';
+import { calculateVariance } from './calculateVariance.js';
+import { getTotalCycleDays } from './getTotalCycleDays.js';
+import { getNextDate } from "./getNextDate.js";
 
 const MIN_UPDATE_DIFFERENCE = 7;
-
-const DATE_FORMAT = 'YYYY-MM-DD';
-
 const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
 
 /**
@@ -46,7 +46,7 @@ export const createCycleAndNotifyUser = async (newCycle, user, startdate) => {
     // Save the new cycle
     await newCycle.save();
 
-    const message = `Cycle created for ${startdate}`;
+    const message = `Cycle created for ${formatDate(startdate)}`;
 
     // Generate notification and add it to the user's list
     const notify = notifications.generateNotification(newCycle, 'createdCycle', message);
@@ -85,8 +85,17 @@ export const performUpdateAndNotify = async (cycle, period, ovulation, cycleId, 
   try {
     const updated_at = new Date();
     const month = _month(cycle.start_date);
-    const updatedData = await calculate(period, cycle.start_date, ovulation);
-    const data = cycleParser(month, period, cycle.start_date.toISOString(), updatedData);
+    const variance = calculateVariance(user.cycleLengths || []);
+    const totalCycleDays = getTotalCycleDays(cycle.start_date, ovulation, variance);
+    const nextDate = getNextDate(cycle.start_date, totalCycleDays);
+    const data = cycleParser(month, period, cycle.start_date.toISOString(), {
+      days: totalCycleDays,
+      nextDate: nextDate.toISOString(),
+      ovulation: ovulation,
+      periodRange: [cycle.start_date.toISOString(), nextDate.toISOString()],
+      ovulationRange: [ovulation.toISOString(), new Date(ovulation.getTime() + MILLISECONDS_IN_A_DAY).toISOString()],
+      unsafeDays: [] // You need to implement getUnsafeRange function
+    });
 
     // Update the cycle
     const updatedCycle = await Cycle.findByIdAndUpdate(cycleId, {
