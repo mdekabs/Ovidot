@@ -27,7 +27,7 @@ export async function createCycle(req, res) {
     }
 
     const userId = req.user.id;
-    const { period, ovulation, startdate } = req.body;
+    const { period, startdate } = req.body;
     const ovulation = req.body.ovulation;
 
     if (!validateCreateDate(startdate)) {
