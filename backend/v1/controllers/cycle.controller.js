@@ -28,6 +28,7 @@ export async function createCycle(req, res) {
 
     const userId = req.user.id;
     const { period, ovulation, startdate } = req.body;
+    const ovulation = req.body.ovulation;
 
     if (!validateCreateDate(startdate)) {
         return handleResponse(res, 400, 'Specify a proper date: Date should not be less than 21 days or greater than present day');
