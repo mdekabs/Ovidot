@@ -694,3 +694,15 @@
 2024-03-25T19:34:44.024Z INFO: GET /api/v1/swagger/favicon-32x32.png 200 51ms 200
 2024-03-25T19:35:55.346Z INFO: 2024 cache data deleted 
 2024-03-25T19:35:55.351Z INFO: POST /api/v1/auth/cycles/create 201 423ms 201
+2024-03-25T19:52:59.308Z INFO: MongoDB connected! 
+2024-03-25T19:52:59.328Z INFO: Server is now running on port 5000 
+2024-03-25T19:58:35.896Z ERROR: Error sending email for user creation: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials gw2-20020a0562140f0200b00690cd39da04sm4427357qvb.32 - gsmtp 
+2024-03-25T19:58:35.899Z ERROR: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials gw2-20020a0562140f0200b00690cd39da04sm4427357qvb.32 - gsmtp 
+2024-03-25T19:58:35.927Z ERROR: POST /api/v1/signup 500 2916ms 500
+2024-03-25T20:01:10.422Z INFO: POST /api/v1/login 200 562ms 200
+2024-03-25T20:02:46.979Z INFO: 2024 cache data deleted 
+2024-03-25T20:02:46.981Z INFO: POST /api/v1/auth/cycles/create 201 64ms 201
+2024-03-25T20:03:23.554Z INFO: GET /api/v1/auth/cycles/getall 200 16ms 200
+2024-03-25T20:10:18.781Z INFO: GET /api/v1/auth/cycles/6601d866a2a7fc5e4ac83229 200 14ms 200
