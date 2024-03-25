@@ -1,11 +1,95 @@
-// CYCLE CALCULATOR
-const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
+
+import { calculateVariance } from './calculateVariance.js';
+
+/**
+ * Calculate the estimated cycle for the individual.
+ * Note: this calculator is based on the average 28 days cycle.
+ * Proper estimation will be made in later versions from data provided
+ * by users to get an accurate prediction.
+ *
+ * @param {Number} period - the number of days of menstruation
+ * @param {Date} startDate - the beginning of the user cycle YYYY-MM-DD
+ * @param {Date} ovulation - the day the user experienced ovulation in the cycle. YYYY-MM-DD
+ * @param {Number} variance - variance in cycle lengths
+ * @returns {Object} - an object with variables of days (cycle duration), periodRange,
+ * ovulationRange, unsafeDays, and nextDate.
+ */
+export async function calculate(period, startDate, ovulation = null, variance) {
+    try {
+        const dayOne = new Date(startDate);
+        let dayLast;
+
+        const periodRange = [];
+
+        if (ovulation === null) {
+            ovulation = new Date(dayOne);
+            ovulation.setDate(dayOne.getDate() + 9 + period);
+        } else {
+            ovulation = new Date(ovulation);
+            // check if ovulation occurs before or during period range.
+            // if it does, throw an error
+            dayLast = new Date(dayOne);
+            dayLast.setDate(dayLast.getDate() + period - 1); // The last day of menstruation
+
+            if (ovulation <= dayLast) {
+                const err = new Error("Invalid ovulation date: Can't occur before or during menstruation");
+                err.statusCode = 400;
+                throw err;
+            }
+        }
+
+        // Get the total cycle days
+        const totalCycleDays = await getTotalCycleDays(dayOne, ovulation, variance);
+
+        // Get the period range by adding each day.
+        for (let i = 0; i < period; i++) {
+            const currDate = new Date(dayOne);
+            currDate.setDate(dayOne.getDate() + i);
+            periodRange.push(formatDate(currDate));
+        }
+
+        // Calculate the predicted start date and end date for ovulation.
+        const ovulationRange = getOvulationRange(ovulation, dayLast);
+
+        // Calculate the unsafeRange
+        const unsafeRange = getUnsafeRange(ovulation, new Date(periodRange[periodRange.length - 1]));
+
+        let nextDate = new Date(dayOne);
+        nextDate.setDate(dayOne.getDate() + totalCycleDays);
+        nextDate = formatDate(nextDate);
+
+        return {
+            days: totalCycleDays,
+            periodRange,
+            ovulation: formatDate(ovulation),
+            ovulationRange,
+            unsafeDays: unsafeRange,
+            nextDate
+        };
+    } catch (err) {
+        throw err;
+    }
+}
+
+/**
+ * Get the total number of days in the menstrual cycle.
+ *
+ * @param {Date} startDate - the beginning of the user cycle
+ * @param {Date} ovulation - the day the user experienced ovulation
+ * @param {Number} variance - variance in cycle lengths
+ * @returns {Number} - the total number of days in the cycle
+ */
+const getTotalCycleDays = async (startDate, ovulation, variance) => {
+    const days = new Date(ovulation);
+    days.setDate(ovulation.getDate() + 15);
+    return (days - startDate) / (24 * 60 * 60 * 1000) + variance;
+};
 
 /**
  * Get the range of ovulation dates.
  *
  * @param {Date} ovulation - the day the user experienced ovulation
- * @param {Date} dayLast - the last day of menstraution
+ * @param {Date} dayLast - the last day of menstruation
  * @returns {String[]} - an array containing the start, current, and end dates of ovulation
  */
 const getOvulationRange = (ovulation, dayLast = null) => {
@@ -66,7 +150,7 @@ const getUnsafeRange = (ovulation, lastPeriodDay) => {
  * @param {Date} date2 - the second date
  * @returns {Number} - the difference in days
  */
-const differenceInDays = (date1, date2) => (date1 - date2) / MILLISECONDS_IN_A_DAY;
+const differenceInDays = (date1, date2) => (date1 - date2) / (24 * 60 * 60 * 1000);
 
 /**
  * Format a date as a string in "YYYY-MM-DD" format.
@@ -79,6 +163,8 @@ const formatDate = (date) => date.toISOString().split('T')[0];
 /**
  * Extract the month from the datetime.
  *
+ * @
+ 
  * @param {String} startdate
  * @returns {String} - the month
  */
@@ -87,4 +173,4 @@ export function month(startdate) {
     const month = dateObject.toLocaleString('en-US', { month: 'long' });
 
     return month;
-};
+}
