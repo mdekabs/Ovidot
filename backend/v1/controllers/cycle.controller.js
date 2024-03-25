@@ -6,7 +6,7 @@ import { validationResult } from 'express-validator';
 import { populateWithCycles, populateWithCyclesBy, getCycleLengthsFromDB } from '../utility/user.populate.js';
 import { validateCreateDate } from '../utility/date.validate.js';
 import redisManager from '../services/caching.js';
-import { cycleFilter, cycleParser } from '../utility/cycle.parsers.js';
+import { cycleFilter, cycleParser, MONTHS } from '../utility/cycle.parsers.js';
 import { checkExistingCycle, createCycleAndNotifyUser } from '../utility/cycle.helpers.js';
 import { handleResponse } from '../utility/handle.response.js';
 import { calculateVariance } from '../utility/calculateVariance.js';
@@ -25,12 +25,22 @@ export async function createCycle(req, res) {
     }
 
     const userId = req.user.id;
-    const { period, startdate } = req.body;
-    let { ovulation } = req.body;
+    const { period, startdate, ovulation } = req.body;
 
     if (!validateCreateDate(startdate)) {
         return handleResponse(res, 400, 'Specify a proper date: Date should not be less than 21 days or greater than present day');
     }
+    const month = _month(startdate);
+    const user = await populateWithCycles(userId);
+    if (user === null) {
+      return handleResponse(res, 404, "User not found");
+    }
+
+    if (checkExistingCycle(user, startdate)) {
+      return handleResponse(res, 404, "Cycle exist for this month: Delete to recreate");
+    };
+
+
 
     // Fetch cycle lengths for the user from the database
     const pastCycleLengths = await getCycleLengthsFromDB(userId);
@@ -41,12 +51,9 @@ export async function createCycle(req, res) {
     // Calculate cycle data
     const cycleData = await calculate(period, startdate, ovulation, variance);
 
-    const newCycle = await Cycle.create({...cycleData});
+    const data = cycleParser(month, period, startdate, cycleData);
 
-    const user = await populateWithCycles(userId);
-    if (user === null) {
-        return handleResponse(res, 404, 'User not found');
-    }
+    const newCycle = await Cycle.create({...data});
 
     // Create the cycle and notification for the user
     await createCycleAndNotifyUser(newCycle, user, startdate);

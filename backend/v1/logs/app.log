@@ -673,3 +673,24 @@
 2024-03-25T13:11:10.094Z INFO: GET /api/v1/auth/cycles/getall 200 32ms 200
 2024-03-25T13:11:33.602Z ERROR: Cycle validation failed: next_date: Path `next_date` is required., start_date: Path `start_date` is required., period: Path `period` is required., year: Path `year` is required., month: Path `month` is required. 
 2024-03-25T13:11:33.607Z ERROR: POST /api/v1/auth/cycles/create 500 64ms 500
+2024-03-25T13:40:38.816Z INFO: MongoDB connected! 
+2024-03-25T13:40:38.830Z INFO: Server is now running on port 5000 
+2024-03-25T13:41:23.657Z ERROR: Cycle validation failed: next_date: Path `next_date` is required., start_date: Path `start_date` is required., period: Path `period` is required., year: Path `year` is required., month: Path `month` is required. 
+2024-03-25T13:41:23.671Z ERROR: POST /api/v1/auth/cycles/create 500 51ms 500
+2024-03-25T13:43:09.447Z INFO: POST /api/v1/login 200 626ms 200
+2024-03-25T13:43:56.894Z INFO: GET /api/v1/auth/cycles/getall 200 9ms 200
+2024-03-25T13:44:52.661Z WARN: POST /api/v1/auth/cycles/getall 404 6ms 404
+2024-03-25T13:45:06.018Z ERROR: Cycle validation failed: next_date: Path `next_date` is required., start_date: Path `start_date` is required., period: Path `period` is required., year: Path `year` is required., month: Path `month` is required. 
+2024-03-25T13:45:06.022Z ERROR: POST /api/v1/auth/cycles/create 500 42ms 500
+2024-03-25T19:25:40.325Z INFO: MongoDB connected! 
+2024-03-25T19:25:40.371Z INFO: Server is now running on port 5000 
+2024-03-25T19:32:00.566Z WARN: GET /api/v1/auth/cycles/getall 401 50ms 401
+2024-03-25T19:33:16.059Z INFO: POST /api/v1/login 200 606ms 200
+2024-03-25T19:34:42.437Z INFO: GET /api/v1/swagger/ 304 5ms 304
+2024-03-25T19:34:42.573Z INFO: GET /api/v1/swagger/swagger-ui.css 304 3ms 304
+2024-03-25T19:34:42.606Z INFO: GET /api/v1/swagger/swagger-ui-bundle.js 304 3ms 304
+2024-03-25T19:34:42.731Z INFO: GET /api/v1/swagger/swagger-ui-standalone-preset.js 304 2ms 304
+2024-03-25T19:34:42.779Z INFO: GET /api/v1/swagger/swagger-ui-init.js 304 1ms 304
+2024-03-25T19:34:44.024Z INFO: GET /api/v1/swagger/favicon-32x32.png 200 51ms 200
+2024-03-25T19:35:55.346Z INFO: 2024 cache data deleted 
+2024-03-25T19:35:55.351Z INFO: POST /api/v1/auth/cycles/create 201 423ms 201
