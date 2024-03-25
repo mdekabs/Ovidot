@@ -668,3 +668,8 @@
 2024-03-25T12:47:14.022Z INFO: GET /api/v1/auth/cycles/getall 200 33ms 200
 2024-03-25T12:47:40.648Z ERROR: Cycle validation failed: next_date: Path `next_date` is required., start_date: Path `start_date` is required., period: Path `period` is required., year: Path `year` is required., month: Path `month` is required. 
 2024-03-25T12:47:40.650Z ERROR: POST /api/v1/auth/cycles/create 500 28ms 500
+2024-03-25T13:10:50.956Z INFO: MongoDB connected! 
+2024-03-25T13:10:50.967Z INFO: Server is now running on port 5000 
+2024-03-25T13:11:10.094Z INFO: GET /api/v1/auth/cycles/getall 200 32ms 200
+2024-03-25T13:11:33.602Z ERROR: Cycle validation failed: next_date: Path `next_date` is required., start_date: Path `start_date` is required., period: Path `period` is required., year: Path `year` is required., month: Path `month` is required. 
+2024-03-25T13:11:33.607Z ERROR: POST /api/v1/auth/cycles/create 500 64ms 500
